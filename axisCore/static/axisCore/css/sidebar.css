@@ -1,0 +1,12 @@
+.profileSidebar
+{
+  width: 20vw;
+  position: relative;
+  padding-right:10vw;
+}
+.settingSidebar
+{
+  width: 20vw;
+  position: relative;
+  padding-left:10vw;
+}

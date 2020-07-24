@@ -1,0 +1,51 @@
+@font-face {
+font-family: 'StrokeyBacon';
+font-style: normal;
+font-weight: normal;
+src: local('StrokeyBacon'), url('../fonts/StrokeyBacon.woff') format('woff');
+}
+body{
+  color:red;
+}
+.axisNavbar
+{
+  height: 3em;
+  transition: top 0.5s;
+}
+.form-control {
+    padding-right: 30px;
+}
+.form-control + .fas {
+    position: absolute;
+    right: 0;
+    padding: 10px 27px;
+}
+.searchQueryField{
+  height:2em;
+  width:12em;
+}
+.searchQueryField:focus{
+  background-color: #e1f5f0;
+  box-shadow: 0px 0px 2px rgba(0,100,255,1),
+              0px 0px 2px rgba(0,100,255,1),
+              0px 0px 3px rgba(0,100,255,1);
+}
+.searchQueryButton{
+  font-size: 14px;
+}
+.searchQueryButton:hover{
+  color:black;
+  font-weight: bolder;
+  font-size: 16px;
+}
+.userPosts{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  padding: 5px;
+  padding-top: 0px;
+  padding-bottom: 10px;
+  width: 70vw;
+  display: flex;
+}
