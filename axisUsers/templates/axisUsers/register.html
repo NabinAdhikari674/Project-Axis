@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Sign Up</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/8ad826539a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'axisUsers/css/index.css' %}">
+  </head>
+  <body class="regBody">
+    <div class="regContent">
+      <div class="regForm">
+        <form method="post" action="">
+          <legend align='left'><h2>Registration Form</h2></legend>
+          <h6 style="padding-top:2em;"><span class="error">*Required Fields</span></h6>
+          <i class="fas fa-user" style='font-size:20px'></i>
+          <input type="text" name="firstName" placeholder=" First Name" value="First Name" required>
+          <input type="text" name="lastName" placeholder="Last Name" value="Last Name" required>
+          <span class="error"> * <br>Name Error</span>
+          <br>
+          <i class="far fa-envelope" style='font-size:20px'></i>
+          <input type="text" name="email" placeholder="Email" value="Email" required>
+          <span class="error"> * Email Error</span>
+          <br><br>
+          <i class='fas fa-user-tie' style='font-size:20px'></i>
+          <input type="text" name="userName" placeholder="Username"value="UserName">
+          <span class="error">Username Error</span>
+          <br><br>
+          <i class='fas fa-key' style='font-size:20px'></i>
+          <input type="password" name="password" placeholder="Password" value="Password" required>
+          <span class="error"> *Password Errr</span>
+          <br><br>
+          <i class="fas fa-venus-mars" style='font-size:20px'></i>
+          <input type="radio" name="gender" value="male">  Male
+          <input type="radio" name="gender" value="female">  Female
+          <input type="radio" name="gender" value="other">  Other
+          <span class="error"> * Gender Error</span>
+          <br><br>
+          Agree On <a href="terms.html">Our Terms and Conditions </a>:<br>
+          <input type="radio" name="agreeCnd"  value="agree">  I Agree
+          <input type="radio" name="agreeCnd"  value="disAgree">  I Disagree
+          <span class="error"> * Agreement Error</span>
+          <br><br>
+          <input style="border-width: 1px;border-radius:8px;cursor: pointer;" type="submit" name="SubmitForm" value="Register">
+        </form>
+      </div>
+      <div class="regImage">
+        <img class="regImageImage" src="https://i.imgur.com/ssSIQHn.jpg" alt="sign Up Image"/>
+        <p style="margin-top:1em;margin-left:5%;">  Already Registered ? <a href="login.php"> Login Here</a></p>
+      </div>
+   </div>
+   <div class="msgBox">
+     <span class="message"><br>Message</span>
+   </div>
+  </body>
+</html>

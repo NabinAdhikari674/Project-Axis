@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Log In</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/8ad826539a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'axisUsers/css/index.css' %}">
+  </head>
+  <body class="loginBody">
+    <div class="loginContent">
+      <div class="loginForm">
+        <form method="post" action="">
+          <legend align='left'><h2>Login Form</h2></legend>
+          <h6 style="padding-top:2em;"><span class="error">*Required Fields</span></h6>
+          <i class='fas fa-user-tie' style='font-size:20px'></i>
+          <input type="text" name="userName" placeholder="Username or Email" value="Username" required>
+          <span class="error"> * UserName</span>
+          <br><br>
+          <i class='fas fa-key' style='font-size:20px'></i>
+          <input type="password" name="password" placeholder="Password" value="Password" required>
+          <span class="error"> * Password Error</span>
+          <br><br>
+          <input style="border-width: 1px;border-radius:8px;cursor: pointer;" type="submit" name="submit" value="LogIn">
+        </form>
+      </div>
+      <div class="loginImage">
+        <img class="loginImageImage" src="https://i.etsystatic.com/5711764/r/il/79946b/2260667525/il_794xN.2260667525_qhoc.jpg" alt="login Image"/>
+        <p style="margin-top:1em;margin-left:5%;"> Not Registered Yet ? <a href="../php/register.php"> Register Here</a></p>
+      </div>
+    </div>
+  </body>
+</html>

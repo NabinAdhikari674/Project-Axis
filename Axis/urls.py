@@ -18,5 +18,6 @@ from django.urls import path,include
 
 urlpatterns = [
     path('', include('axisCore.urls')),
+    path('users/', include('axisUsers.urls')),
     path('admin/', admin.site.urls),
 ]
