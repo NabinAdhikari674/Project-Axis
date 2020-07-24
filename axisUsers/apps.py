@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class AxisusersConfig(AppConfig):
+class axisUsersConfig(AppConfig):
     name = 'axisUsers'
