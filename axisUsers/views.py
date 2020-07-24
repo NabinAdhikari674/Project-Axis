@@ -12,3 +12,8 @@ def register(request):
     template = loader.get_template('axisUsers/register.html')
     context = {'main':'main'}
     return HttpResponse(template.render(context,request))
+
+def terms(request) :
+    template = loader.get_template('axisUsers/terms.html')
+    context = {'main':'main'}
+    return HttpResponse(template.render(context,request))
