@@ -12,35 +12,44 @@
     <div class="regContent">
       <div class="regForm">
         <form method="post" action="">
-          <legend align='left'><h2>Registration Form</h2></legend>
+          {% csrf_token %}
+          <legend align='left'><h2>Join Our Axis Family</h2></legend>
           <h6 style="padding-top:2em;"><span class="error">*Required Fields</span></h6>
+          {{ form.non_field_errors }}
+          {{ form.source.errors }}
+          {{ form.source }}
           <i class="fas fa-user" style='font-size:20px'></i>
-          <input type="text" name="firstName" placeholder=" First Name" value="First Name" required>
-          <input type="text" name="lastName" placeholder="Last Name" value="Last Name" required>
-          <span class="error"> * <br>Name Error</span>
-          <br>
+          {{form.first_name}}
+          {{form.last_name}}
+          <span class="error"> {{ form.firstName.errors }}</span>
+          <span class="error">  {{ form.lastName.errors }}</span>
+          <br><br>
           <i class="far fa-envelope" style='font-size:20px'></i>
-          <input type="text" name="email" placeholder="Email" value="Email" required>
-          <span class="error"> * Email Error</span>
+          {{form.email}}
+          <span class="error">* {{form.email.errors}}</span>
           <br><br>
           <i class='fas fa-user-tie' style='font-size:20px'></i>
-          <input type="text" name="userName" placeholder="Username"value="UserName">
-          <span class="error">Username Error</span>
+          {{form.username}}
+          <span class="error"> * {{form.userName.errors}}</span>
           <br><br>
           <i class='fas fa-key' style='font-size:20px'></i>
-          <input type="password" name="password" placeholder="Password" value="Password" required>
-          <span class="error"> *Password Errr</span>
+          {{form.password}}
+          <span class="error"> * {{form.password.errors}}</span>
+          <br><br>
+          <i class='fas fa-globe' style='font-size:20px'></i>
+          {{form.country}}
+          <span class="error"> * {{form.country.errors}}</span>
           <br><br>
           <i class="fas fa-venus-mars" style='font-size:20px'></i>
-          <input type="radio" name="gender" value="male">  Male
-          <input type="radio" name="gender" value="female">  Female
-          <input type="radio" name="gender" value="other">  Other
-          <span class="error"> * Gender Error</span>
+          {% for genderRadio in form.gender %}
+              {{ genderRadio }}
+          {% endfor %}
+          <span class="error">{{form.gender.errors}}</span>
           <br><br>
           Agree On <a href="../terms">Our Terms and Conditions </a>:<br>
           <input type="radio" name="agreeCnd"  value="agree">  I Agree
           <input type="radio" name="agreeCnd"  value="disAgree">  I Disagree
-          <span class="error"> * Agreement Error</span>
+          <span class="error"> * </span>
           <br><br>
           <input style="border-width: 1px;border-radius:8px;cursor: pointer;" type="submit" name="SubmitForm" value="Register">
         </form>
@@ -51,7 +60,7 @@
       </div>
    </div>
    <div class="msgBox">
-     <span class="message"><br>Message</span>
+     <span class="message"><br>We Value Your Privacy Very Highly.<br>Rest Assured Your Data is Safe with Us and is NOT SHARED with Any Other 3rd Parties.</span>
    </div>
   </body>
 </html>

@@ -6,8 +6,10 @@ from django.dispatch import receiver
 
 # Create your models here.
 class User(AbstractUser):
+    emailConfirmed = models.BooleanField(default=False)
     gender = models.CharField(max_length=2,null=True,blank=True)
     phone = models.IntegerField(null=True,blank=True)
+    phoneConfirmed = models.BooleanField(default=False)
     country = models.CharField(max_length=20)
     state = models.CharField(max_length=20,null=True,blank=True)
     city = models.CharField(max_length=20,null=True,blank=True)
