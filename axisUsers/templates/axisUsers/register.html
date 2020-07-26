@@ -18,6 +18,13 @@
           {{ form.non_field_errors }}
           {{ form.source.errors }}
           {{ form.source }}
+          {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+          {% endif %}
           <i class="fas fa-user" style='font-size:20px'></i>
           {{form.first_name}}
           {{form.last_name}}

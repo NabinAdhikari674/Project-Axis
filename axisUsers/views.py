@@ -44,7 +44,7 @@ def register(response):
             userData.save()
             return redirect("../login/")
         else:
-            return render(request,'signup.html',{'form':form})
+            messages.error(response,"Invalid Input. Please Correctly Fill all Required Fields.")
     else:
         form = RegisterUser()
     return render(response,'axisUsers/register.html',{"form":form})
