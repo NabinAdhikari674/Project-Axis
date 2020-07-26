@@ -4,8 +4,11 @@ from . import views
 from django.conf.urls import url
 from django.views.generic import RedirectView
 
+app_name = 'axisUsers'
+
 urlpatterns = [
-    path('login/', views.login, name='login'),
+    path('login/', views.login_request, name='login'),
+    path('logout/', views.logout_request, name='logout'),
     path('register/', views.register, name='register'),
     path('terms/', views.terms, name='termsAndConditions'),
 ]

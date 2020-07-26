@@ -12,15 +12,26 @@
     <div class="loginContent">
       <div class="loginForm">
         <form method="post" action="">
-          <legend align='left'><h2>Login Form</h2></legend>
+          {% csrf_token %}
+          <legend align='left'><h2>Login to Axis</h2></legend>
           <h6 style="padding-top:2em;"><span class="error">*Required Fields</span></h6>
+          {{ form.non_field_errors }}
+          {{ form.source.errors }}
+          {{ form.source }}
+          {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+          {% endif %}
           <i class='fas fa-user-tie' style='font-size:20px'></i>
-          <input type="text" name="userName" placeholder="Username or Email" value="Username" required>
-          <span class="error"> * UserName</span>
+          {{form.username}}
+          <span class="error"> * {{form.username.errors}}</span>
           <br><br>
           <i class='fas fa-key' style='font-size:20px'></i>
-          <input type="password" name="password" placeholder="Password" value="Password" required>
-          <span class="error"> * Password Error</span>
+          {{form.password}}
+          <span class="error"> * {{form.password.errors}}</span>
           <br><br>
           <input style="border-width: 1px;border-radius:8px;cursor: pointer;" type="submit" name="submit" value="LogIn">
         </form>

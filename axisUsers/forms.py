@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm
 from .models import User
 
 class RegisterUser(forms.ModelForm):
@@ -12,8 +13,7 @@ class RegisterUser(forms.ModelForm):
                                 help_text='A Strong Password has Combination of Letters,Numbers and Characters',
                                 widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
     phone = forms.IntegerField(label='Phone',required=False,
-                                widget=forms.NumberInput(attrs={'placeholder': 'Username'}))
-
+                                widget=forms.NumberInput(attrs={'placeholder': 'Phone Number'}))
     genderChoices = [('ML', 'Male'),('FM', 'Female'),('O', 'Other')]
     gender = forms.ChoiceField (label='Gender',required=False,
                                 widget=forms.RadioSelect(attrs={'title': 'Gender'}),choices=genderChoices)
@@ -33,3 +33,13 @@ class RegisterUser(forms.ModelForm):
     class Meta:
     	model = User
     	fields = ["first_name","last_name","email","username","password","gender","country"]
+class LoginUser(AuthenticationForm):
+    username = forms.CharField(label='username',required=True,
+                                help_text='Your Username for Axis',
+                                widget=forms.TextInput(attrs={'placeholder': 'Username'}))
+    password = forms.CharField(label='Password',max_length=32,min_length=6,required=True,
+                                help_text='A Strong Password has Combination of Letters,Numbers and Characters',
+                                widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+    class Meta:
+        model = User
+        fields = ["username","password"]
