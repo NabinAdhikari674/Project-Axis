@@ -1,0 +1,56 @@
+input
+{
+  border-radius: 20px;
+  border:none;
+  padding: 6px 30px;
+}
+input:focus
+{
+  outline: 0 none;
+  background-color: #E8F0FE;
+}
+span
+{
+  font-size: 12px;
+}
+.regBody, .loginBody
+{
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.regContent, .loginContent
+{
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-top :5%;
+  border-style:none;
+  border-width:1px;
+  padding-left:4em;
+  padding-bottom: 2em;
+  padding-top:1em;
+  border-radius: 20px;
+  display: flex;
+}
+.loginContent
+{
+  margin-left: 20%;
+  margin-right: 20%;
+}
+.regForm, .loginForm
+{
+  width:100%;
+  display:block;
+}
+.regImage, .loginImage
+{
+  align-self:center;
+  flex-grow: 1;
+  width:auto;
+  display:block;
+}
+.regImageImage, .loginImageImage
+{
+    max-width: 80%;
+    max-height: 100%;
+    display: block;
+}
