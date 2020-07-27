@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'saw=1)(50q04_!_m6qf!s6^o8ldm06-%kwpzszt$iqc+$+iv13'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['project-axis.herokuapp.com/']
 
