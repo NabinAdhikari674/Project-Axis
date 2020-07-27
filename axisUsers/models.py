@@ -14,8 +14,6 @@ class User(AbstractUser):
     state = models.CharField(max_length=20,null=True,blank=True)
     city = models.CharField(max_length=20,null=True,blank=True)
     area = models.CharField(max_length=20,null=True,blank=True)
-    membershipDate = models.DateField(auto_now_add=True)
-
 
 class Awards(models.Model):
     awardId = models.OneToOneField(User, on_delete=models.CASCADE)
