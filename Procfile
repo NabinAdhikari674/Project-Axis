@@ -1,1 +1,1 @@
-web: gunicorn <Axis>.wsgi --log-file -
+web: gunicorn <Axis/Axis>.wsgi --log-file -
