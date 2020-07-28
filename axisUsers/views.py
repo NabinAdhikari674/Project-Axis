@@ -18,7 +18,7 @@ def login_request(request):
                 login(request, user)
                 print("logged In")
                 messages.info(request,f"You are Logged In as : {userName}")
-                return redirect("axisCore:index")
+                return redirect("axisPosts:postView")
             else :
                 #return redirect("../../")
                 messages.error(request,"Invalid Username Or Password")
@@ -31,7 +31,7 @@ def login_request(request):
 def logout_request(request):
     logout(request)
     #messages.info(request, "Logged out successfully!")
-    return redirect("axisCore:index")
+    return redirect("axisPosts:postView")
 
 def register(response):
     #template = loader.get_template('axisUsers/register.html')

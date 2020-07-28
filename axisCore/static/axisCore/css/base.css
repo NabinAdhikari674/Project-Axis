@@ -5,7 +5,13 @@ font-weight: normal;
 src: local('StrokeyBacon'), url('../fonts/StrokeyBacon.woff') format('woff');
 }
 body{
-  color:red;
+  text-align: justify;
+}
+footer {
+  text-align: center;
+  padding: 3px;
+  background-color: black;
+  color: white;
 }
 .axisNavbar
 {
@@ -38,14 +44,32 @@ body{
   font-weight: bolder;
   font-size: 16px;
 }
-.userPosts{
+.homeContent{
+  display:flex;
+}
+.mainContent{
   margin-left: auto;
   margin-right: auto;
   margin-top: 0px;
   margin-bottom: 5px;
-  padding: 5px;
+  padding:5px;
   padding-top: 0px;
   padding-bottom: 10px;
-  width: 70vw;
-  display: flex;
+  width: auto;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  height:2px;
+}
+body::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
 }

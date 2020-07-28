@@ -6,6 +6,5 @@ from django.views.generic import RedirectView
 
 app_name = "axisCore"
 urlpatterns = [
-    path('', views.index, name='index'),
-    url(r'^favicon\.ico$',RedirectView.as_view(url='/static/axisCore/favicon.ico'))
+    path('', views.base, name='base'),
 ]
