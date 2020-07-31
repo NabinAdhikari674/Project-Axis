@@ -3,16 +3,3 @@
   --main2BG : #343a40;
   --mainColor : #d1d1d1;
 }
-
-body{
-  background-color: var(--main2BG);
-}
-
-.axisNavbar{
-  color:grey;
-  background: black;
-}
-.headContent{
-  background-color: black;
-  color:var(--mainColor);
-}

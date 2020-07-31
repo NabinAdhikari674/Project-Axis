@@ -16,3 +16,11 @@ body{
   background-color: black;
   color:var(--mainColor);
 }
+.axisMenu{
+  background-color: var(--mainBG);
+
+}
+.sticky {
+  background-image: linear-gradient(#12313b, #138e55);
+  color: white;
+}

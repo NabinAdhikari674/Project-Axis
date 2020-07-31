@@ -58,10 +58,14 @@
            </h3>
         </center><br>
       </div>
-
+    <div class="axisMenu">
+      This is Menu
+    </div>
     <div class='homeContent'>
        <div class="profileSidebar">
+         <div class="sticky">
          {% include "axisCore/profileSidebar.html" %}
+          </div>
        </div>
        <main class="mainContent">
            {% block content %}
@@ -69,17 +73,19 @@
           {% endblock content %}
         </main>
        <div class="settingSidebar">
+          <div class="sticky">
          {% include "axisCore/settingSidebar.html" %}
          <!--  {% include "axisCore/settingSidebar.html" with invoice=invoice %}  -->
          {% block customSidebar %} {% endblock customSidebar %}
+          </div>
         </div>
 
      </div>
      <footer>
        <p>Developer : Nabin Adhikari<br>
          © 2020 Nabin Adhikari<br>
-       <a href="mailto:nabinadhikari674@gmail.com">nabinadhikari674@gmail.com</a><br>
-       <a href="https://github.com/NabinAdhikari674">GitHub</a></p>
+       <a href="mailto:nabinadhikari674@gmail.com"  target="_blank">nabinadhikari674@gmail.com</a><br>
+       <a href="https://github.com/NabinAdhikari674"  target="_blank">GitHub</a></p>
      </footer>
      {% block javascript %} {% endblock %}
   </body>

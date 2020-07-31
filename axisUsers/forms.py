@@ -33,6 +33,7 @@ class RegisterUser(forms.ModelForm):
     class Meta:
     	model = User
     	fields = ["first_name","last_name","email","username","password","gender","country"]
+
 class LoginUser(AuthenticationForm):
     username = forms.CharField(label='username',required=True,
                                 help_text='Your Username for Axis',

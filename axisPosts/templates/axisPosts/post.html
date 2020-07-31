@@ -9,46 +9,46 @@
 {% endblock %}
 
 {% block content %}
-<div class="post-feed" id="post-feed">
+<div class="postFeed" id="postFeed">
   {{PostList}}
   {{queryset}}
   {%if post_list%}
       {%for post in post_list%}
-        <div class='post-feed-card'>
-                <div class="post-feed-title">
+        <div class='postFeedCard'>
+                <div class="postFeedTitle">
                   {{ post.postTitle }}
                   <small>| Id : {{ post.id }}</small>
                 </div> <hr style="margin:5px;margin-top:3px;">
-                <div class="post-feed-text">&raquo; {{ post.content }} &laquo;</div>
-                <div class="post-feed-popu">
+                <div class="postFeedText">&raquo; {{ post.content }} &laquo;</div>
+                <div class="postFeedPopu">
                   &#9889;
-                  <span id="popu-counter-{{ post.id }}"> {{ post.popularity }}</span>
-                  <span id="popu-msg-{{ post.id }}"></span>
+                  <span id="popuCounter-{{ post.id }}"> {{ post.popularity }}</span>
+                  <span id="popuMsg-{{ post.id }}"></span>
                 </div>
-                <form method="post" class="post-feed-react">
-                  <button type="button" class="post-feed-reactUp" id="post-feed-reactUp-{{ post.id }}" value=0 >&#9650;Up</button>
-                  <button type="button" class="post-feed-reactDown" id="post-feed-reactDown-{{ post.id }}" value=0 >&#9660;Meh!</button>
-                  <button type="button" name="viewPost" class="post-feed-view-button" id="post-feed-view-button-{{ post.id }}">View Post</button>
+                <form method="post" class="postFeedReact">
+                  <button type="button" class="postFeedReactUp" id="postFeedReactUp-{{ post.id }}" value=0 >&#9650;Up</button>
+                  <button type="button" class="postFeedReactDown" id="postFeedReactDown-{{ post.id }}" value=0 >&#9660;Meh!</button>
+                  <button type="button" name="viewPost" class="postFeedViewButton" id="postFeedViewButton-{{ post.id }}">View Post</button>
                 </form>
                 <div class="post-upd"><small> Updated At : {{ post.updatedOn }}</small></div>
             </div>
             {% endfor %}
-            <div class="load-more" id="load-more<?php echo $_POST['postNumber'] ?>">
-              <span class="load-more-button"  id="<?php echo $_POST['postNumber']; ?>" title="Click to Show More Post Feeds">Load More Posts ?</span>
-              <span class="loading-button" id="<?php echo $_POST['lastPopu']; ?>" style="display:none;">Loading ... </span>
+            <div class="loadMore" id="loadMore-{{post.id}}">
+              <span class="loadMoreButton"  id="loadMoreButton-{{post.id}}" title="Click to Show More Post Feeds">Load More Posts ?</span>
+              <span class="loadingButton" id="loadingButton-{{post.id}}" style="display:none;">Loading ... </span>
             </div>
     {% else %}
-    <div class="load-more" id="load-complete-div">
-      <span class="load-more-button"  id="<?php echo $_POST['postNumber']; ?>"  style="display:none;">Load More Posts ?</span>
-      <span class="load-complete"  id="<?php echo $_POST['postNumber']; ?>" title="You Finished All Post Feed Reads :) ">Looks Like You are all Caught Up :) !!</span>
+    <div class="loadMore" id="loadCompleteDiv">
+      <span class="loadMoreButton"  id="loadMoreButton-{{post.id}}"  style="display:none;">Load More Posts ?</span>
+      <span class="loadComplete"  id="loadComplete-{{post.id}}" title="You Finished All Post Feed Reads :) ">Looks Like You are all Caught Up :) !!</span>
     </div>
     {% endif %}
  </div>
 {% endblock %}
 
 {% block customSidebar %}
-    <div class="customSidebar stickyprofileSidebar sticky" id="customSidebar">
-      <span class="load-more-button"  id="<?php echo $_POST['postNumber']; ?>"  style="">customSidebar</span>
-      <span class="load-complete"  id="<?php echo $_POST['postNumber']; ?>" title="Custom Sidebar From axisPosts">This is a Sidebar That is Controlled and Managed by Individual Apps</span>
+    <div class="customSidebar" id="customSidebar">
+      <span class="loadMoreButton"  id="loadMoreButton-{{post.id}}"  style="">customSidebar of axisPOSTS</span>
+      <span class="loadComplete"  id="loadComplete-{{post.id}}" title="Custom Sidebar From axisPosts">This is a Sidebar That is Controlled and Managed by Individual Apps</span>
     </div>
 {% endblock customSidebar %}

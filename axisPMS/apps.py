@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class AxispmsConfig(AppConfig):
+class axisPMSConfig(AppConfig):
     name = 'axisPMS'

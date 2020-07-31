@@ -13,6 +13,10 @@ footer {
   background-color: black;
   color: white;
 }
+
+
+/* ======================== NAVBAR ========================================= */
+
 .axisNavbar
 {
   height: 3em;
@@ -44,6 +48,22 @@ footer {
   font-weight: bolder;
   font-size: 16px;
 }
+
+/* ======================== MENU ========================================= */
+.axisMenu{
+  background-color: green;
+  color: white;
+  z-index: 2;
+  margin-left: auto;
+  margin-right: auto;
+  height: 3em;
+  position: sticky;
+  top:0px;
+}
+
+
+/* ======================== Content ========================================= */
+
 .homeContent{
   display:flex;
 }
@@ -56,6 +76,14 @@ footer {
   padding-top: 0px;
   padding-bottom: 10px;
   width: auto;
+}
+.sticky {
+  margin: 1em;
+  margin-top: 2em;
+  padding: 0.3em;
+  height: 20em;
+  position: sticky;
+  top: 4em;/* Where it stops */
 }
 
 ::-webkit-scrollbar {

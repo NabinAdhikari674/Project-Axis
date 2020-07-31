@@ -27,13 +27,13 @@ SECRET_KEY = 'saw=1)(50q04_!_m6qf!s6^o8ldm06-%kwpzszt$iqc+$+iv13'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['project-axis.herokuapp.com/']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'axisPMS.apps.axosPMSconfig',
+    'axisPMS.apps.axisPMSConfig',
     'axisCore.apps.axisCoreConfig',
     'axisUsers.apps.axisUsersConfig',
     'axisPosts.apps.axisPostsConfig',
@@ -85,7 +85,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'axisDatabase',
         'USER': 'postgres',
-        'PASSWORD': 'gautam',
+        'PASSWORD': 'leonardo',
         'HOST': 'localhost',
         'PORT': '',
     }
