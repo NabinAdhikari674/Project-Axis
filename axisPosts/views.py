@@ -12,6 +12,7 @@ class PostList(generic.ListView):
     context = {'post_list':post_list}
     #return HttpResponse(template.render(context,request))
 
+
 class PostDetail(generic.DetailView):
     model = Post
     template_name = 'postDetail.html'

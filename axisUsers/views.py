@@ -10,7 +10,7 @@ def login_request(request):
     #template = loader.get_template('axisUsers/login.html')
     if request.method == "POST":
         form = LoginUser(request=request, data=request.POST)
-        if form.is_valid():
+        if form.is_vali d():
             userName = form.cleaned_data.get('username')
             userPass = form.cleaned_data.get('password')
             user = authenticate(username=userName, password=userPass)
