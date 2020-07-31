@@ -1,11 +1,14 @@
 .profileSidebar
 {
   width: 20vw;
+  height: auto;
   position: relative;
   padding-right:5vw;
+
 }
 .settingSidebar
 {
+  height: auto;
   width: 20vw;
   position: relative;
   padding-left:5vw;

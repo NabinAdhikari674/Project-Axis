@@ -9,3 +9,8 @@ def base(request):
     context = {'base':'base'}
     #return HttpResponse(template.render(context,request))
     return render(request, 'axisCore/base.html', context)
+
+
+def uploadPost(request):
+    context = {'post':'axisPOST'}
+    return render(request,'axisCore/uploadPost.html',context)

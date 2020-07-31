@@ -12,8 +12,8 @@
 <div class="postFeed" id="postFeed">
   {{PostList}}
   {{queryset}}
-  {%if post_list%}
-      {%for post in post_list%}
+  {% if post_list %}
+      {% for post in post_list %}
         <div class='postFeedCard'>
                 <div class="postFeedTitle">
                   {{ post.postTitle }}
@@ -47,8 +47,6 @@
 {% endblock %}
 
 {% block customSidebar %}
-    <div class="customSidebar" id="customSidebar">
       <span class="loadMoreButton"  id="loadMoreButton-{{post.id}}"  style="">customSidebar of axisPOSTS</span>
       <span class="loadComplete"  id="loadComplete-{{post.id}}" title="Custom Sidebar From axisPosts">This is a Sidebar That is Controlled and Managed by Individual Apps</span>
-    </div>
 {% endblock customSidebar %}

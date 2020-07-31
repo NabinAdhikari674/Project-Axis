@@ -21,6 +21,9 @@ footer {
 {
   height: 3em;
   transition: top 0.5s;
+  position:fixed;
+  width:100%;
+  z-index:1;
 }
 .form-control {
     padding-right: 30px;
@@ -51,14 +54,20 @@ footer {
 
 /* ======================== MENU ========================================= */
 .axisMenu{
-  background-color: green;
-  color: white;
+  width: 45vw;
   z-index: 2;
   margin-left: auto;
   margin-right: auto;
   height: 3em;
   position: sticky;
   top:0px;
+}
+.axisMenuButtons{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width:100%;
+  padding-top: 0.5em;
 }
 
 
@@ -81,7 +90,7 @@ footer {
   margin: 1em;
   margin-top: 2em;
   padding: 0.3em;
-  height: 20em;
+  height: auto;
   position: sticky;
   top: 4em;/* Where it stops */
 }
@@ -100,4 +109,18 @@ body::-webkit-scrollbar {
   border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
+}
+
+.overlapContentPage{
+  position: fixed;
+  display:block;
+  overflow-y: scroll;
+  padding:1em;
+  width: 100%;
+  height: 100%;
+  top: 3em;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
 }

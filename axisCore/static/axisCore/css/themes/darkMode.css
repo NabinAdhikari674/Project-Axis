@@ -7,6 +7,17 @@
 body{
   background-color: var(--main2BG);
 }
+input {
+  background-color: #25292b;
+  color: white;
+}
+
+input:focus { /*#bdd4ff;*/
+  background-color:black;
+  box-shadow: 0px 0px 2px rgba(0,100,255,1),
+              0px 0px 2px rgba(0,100,255,1),
+              0px 0px 3px rgba(0,100,255,1);
+}
 
 .axisNavbar{
   color:grey;
@@ -17,10 +28,27 @@ body{
   color:var(--mainColor);
 }
 .axisMenu{
-  background-color: var(--mainBG);
+  background-color: black;
+  color: white;
 
 }
 .sticky {
   background-image: linear-gradient(#12313b, #138e55);
   color: white;
 }
+.overlapContentPage{
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.uploadPostForm {
+  background: var(--main2BG);
+  color:var(--mainColor);
+  box-shadow: 0px 0px 2px rgba(75, 105, 101,1),
+              0px 0px 2px rgba(75, 105, 101,1),
+              0px 0px 5px rgba(75, 105, 101,1);
+
+}
+.advancedPostButton:hover{  color:white; }
+.newPostSubmitButton {
+  background-color:#3c619e;
+}
+.newPostSubmitButton:hover { background-color:#03658c; }

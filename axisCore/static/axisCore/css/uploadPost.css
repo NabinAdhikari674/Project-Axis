@@ -1,0 +1,41 @@
+input
+{
+  /*border-bottom: 1px solid #999;*/
+  border-radius: 20px;
+  border:none;
+  padding: 6px 30px;
+}
+input:focus
+{
+  outline: 0 none;
+}
+
+.uploadPostFormCloseButton{
+  position: relative;
+  margin-left: 20%;
+}
+.uploadPostForm
+{
+  position: relative;
+  width:45%;
+  margin:auto;
+  margin-top: 1em;
+  padding:1em;
+  padding-top: 8px;
+  padding-bottom: 5px;
+}
+.advancedPostButton
+{
+  float:right;
+  cursor:pointer;
+  font-size: 14px;
+  transition: 0.1s;
+}
+.advancedPostButton:hover{ font-size: 14.1px; }
+.newPostSubmitButton
+{
+  border-width:1px;
+  border-radius:5px;
+  cursor:pointer;
+  margin:1%;
+}

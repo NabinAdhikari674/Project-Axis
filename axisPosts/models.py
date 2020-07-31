@@ -1,12 +1,11 @@
 from django.db import models
 from axisUsers.models import User
-
 # Create your models here.
 class Post(models.Model):
     postTitle = models.CharField(max_length=200,unique=False)
     postSlug = models.SlugField(max_length=200,unique=True)
     postAuthor = models.ForeignKey(User,on_delete= models.SET_DEFAULT,default="AnynomousAxisUser")
-    #statusChoices = [('0', 'Draft/Not Published'),('1', 'Published')]
+    statusChoices = [('0', 'Draft/Not Published'),('1', 'Published')]
     status = models.IntegerField(default=0)
     content = models.TextField()
     category = models.IntegerField(default=0)
