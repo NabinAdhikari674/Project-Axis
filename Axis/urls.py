@@ -21,4 +21,5 @@ urlpatterns = [
     path('base/', include('axisCore.urls')),
     path('users/', include('axisUsers.urls')),
     path('admin/', admin.site.urls),
+    path('monitor/',include('axisPMS.url')),
 ]
