@@ -6,10 +6,14 @@ class Post(models.Model):
     postSlug = models.SlugField(max_length=200,unique=True)
     postAuthor = models.ForeignKey(User,on_delete= models.SET_DEFAULT,default="AnynomousAxisUser")
     statusChoices = [('0', 'Draft/Not Published'),('1', 'Published')]
-    status = models.IntegerField(default=0)
+    status = models.IntegerField(default=0) #Draft or Published
     content = models.TextField()
-    category = models.IntegerField(default=0)
-    axisStatus = models.IntegerField(default=0)
+    category = models.IntegerField(default=0) #Post Category:Regular/Complaint/Concern/Movement/Awareness
+    axisStatus = models.IntegerField(default=0) # Issue Status : Planning/OnGoing/Ended/Cancelled/Suspended
+    postLevel = models.IntegerField(default=0) #Post Type/Level : Gov/Community/Private/Charity/Org
+    budget = models.IntegerField(default=0)
+    startDate = models.DateTimeField(blank=True,null=True)
+    endDate = models.DateTimeField(blank=True,null=True)
     popularity = models.BigIntegerField(default=0)
     updatedOn = models.DateTimeField(auto_now=True)
     createdOn = models.DateTimeField(auto_now_add=True)

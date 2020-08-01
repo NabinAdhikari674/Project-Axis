@@ -7,43 +7,37 @@
     <h6>Want to Post Something ?</h6>
     <hr style="margin-top:0px;">
     <form method="post" action="" onSubmit="return false;">
+        {% csrf_token %}
+        <h6 style="padding-top:2em;"><span class="error">*Required Fields</span></h6>
+        {{ uploadPostForm.non_field_errors }}
+        {{ uploadPostForm.source.errors }}
+        {{ uploadPostForm.source }}
+        {% if uploadMessages %}
+          <ul class="messages">
+              {% for message in uploadMessages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+              {% endfor %}
+          </ul>
+        {% endif %}
       <p style="text-align:center;margin:0%;margin-bottom:-3%;">
         <i class="fas fa-user-tie" style='font-size:18px;'></i> {{ user.username }}
-        <input type="text" class="newPostTitle" placeholder=" Title/Heading For Your Post " required>
+        {{uploadPostForm.postTitle}}
+        <span class="error">* {{uploadPostForm.postTitle.errors}}</span>
       </p>
       <br><br>
-      <label for="Category">Choose Your Post Category : </label>
-      <select name="Category">
-        <option value="Post">Regular Post</option>
-        <option value="Project">Project</option>
-        <option value="Complaint">Complaint</option>
-        <option value="Concern">Concern</option>
-        <option value="Movement">Movement</option>
-      </select><br>
-      <label for="Type">Choose Post Type/Level : </label>
-      <select name="Type">
-        <option value="Government">Government</option>
-        <option value="Community">Community</option>
-        <option value="Private">Private</option>
-        <option value="Charity">Charity</option>
-        <option value="Organization">Organization</option>
-      </select><br>
-      <label for="Status">Choose Status : </label>
-      <select name="Status">
-        <option value="PlanningPhase">Planning Phase</option>
-        <option value="OnGoing">On Going</option>
-        <option value="Ended">Ended</option>
-        <option value="Cancelled">Cancelled( Aborted )</option>
-        <option value="Suspended">Suspended</option>
-      </select><br>
-      <label for="startDate">StartDate : </label>
-      <input type="date" name="startDate">
-      <label for="deadline">Deadline : </label>
-      <input type="date" name="deadline"><br>
-      <input type="number" placeholder=" Estimated Budged (NRS) "><br><br>
-      <textarea name="newPostContent" rows="8" cols="80"  placeholder=" Write Your Post Here ..." required></textarea>
-      <input type="text" style="width:100%;margin-top: 0px;margin-bottom:2%;" class="newPostContent" placeholder=" Write Your Post Here ..." required>
-      <br>
+      Issue Category : {{uploadPostForm.category}}
+      <span class="error">{{uploadPostForm.category.errors}}</span>
+      Issue Level/ Type : {{uploadPostForm.postLevel}}
+      <span class="error">{{uploadPostForm.postLevel.errors}}</span><br>
+      Issue Status : {{uploadPostForm.axisStatus}}
+      <span class="error">{{uploadPostForm.axisStatus.errors}}</span><br>
+      Budget : {{uploadPostForm.budget}}
+      <span class="error">{{uploadPostForm.budget.errors}}</span><br>
+      StartDate:{{uploadPostForm.startDate}}EndDate:{{uploadPostForm.endDate}}
+      <span class="error">{{uploadPostForm.startDate.errors}}</span>
+      <span class="error">{{uploadPostForm.endDate.errors}}</span><br><br>
+      {{uploadPostForm.content}}
+      <span class="error">* {{uploadPostForm.content.errors}}</span><br>
       <center>
        <input class="newPostSubmitButton" type="submit" name="submitPost" value="Post">
        </center>

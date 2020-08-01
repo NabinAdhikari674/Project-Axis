@@ -19,14 +19,15 @@ $(document).ready(function(){
       document.getElementById("axisNavbar").style.top = "0";
       console.log("Button Pressed ");
       //alert("Button Pressed");
-
-        //$.ajax({
-        //    type:'POST',
-        //    url:'',
-        //    data: {postId:postId,reaction:1,buttonValue:buttonValue,aStatus:aStatus},
-        //    success:function(response){
-        //    }
-        //});
+      var csrf_token = getCookie('csrftoken');
+        $.ajax({
+            type:'POST',
+            url:'base/uploadPost/',
+            data: {"csrfmiddlewaretoken" : csrf_token},
+            success:function(response){
+              console.log("data Passed");
+            }
+        });
      });
      $(document).on('click','.uploadPostFormCloseButton',function(){
        document.getElementById('overlapContentPage').style.display='none';
@@ -48,3 +49,18 @@ $(document).ready(function(){
 
 
 });
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}

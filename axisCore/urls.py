@@ -7,5 +7,5 @@ from django.views.generic import RedirectView
 app_name = "axisCore"
 urlpatterns = [
     path('', views.base, name='base'),
-    path('uploadPost/', views.uploadPost, name='uploadPost'),
+    path('uploadPost/', views.uploadPostFormView, name='uploadPostFormView'),
 ]
