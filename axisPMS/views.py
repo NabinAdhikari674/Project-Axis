@@ -7,6 +7,4 @@ def pmsPostView(request):
     #template = loader.get_template('axisPMS/sort.html')
     context = {'sort':'sort'}
     #return HttpResponse(template.render(context,request))
-    return render(request, 'axisPMS/showpost.html', context)
-
-
+    return render(request, 'axisPMS/pms.html', context)

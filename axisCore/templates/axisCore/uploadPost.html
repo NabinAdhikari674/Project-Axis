@@ -1,28 +1,26 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'axisCore/css/uploadPost.css' %}">
-<div class="overlapContentPage" id="overlapContentPage" style="display:none;">
-  <button type="button"name="uploadPostFormCloseButton"class="uploadPostFormCloseButton"id="uploadPostFormCloseButton"> Close </button>
-  <div class="uploadPostForm" id='uploadPostForm'>
-    <h6 class="advancedPostButton"> Advanced Post </h6>
-    <h6>Want to Post Something ?</h6>
-    <hr style="margin-top:0px;">
-    <form method="post" action="" onSubmit="return false;">
-        {% csrf_token %}
-        <h6 style="padding-top:2em;"><span class="error">*Required Fields</span></h6>
-        {{ uploadPostForm.non_field_errors }}
-        {{ uploadPostForm.source.errors }}
-        {{ uploadPostForm.source }}
-        {% if uploadMessages %}
-          <ul class="messages">
-              {% for message in uploadMessages %}
-              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-              {% endfor %}
-          </ul>
-        {% endif %}
+<div class="uploadPostForm" id='uploadPostForm'>
+  <h6 class="advancedPostButton"> Advanced Post </h6>
+  <h6>Want to Post Something ?</h6>
+  <hr style="margin-top:0px;">
+  <form method="post" action="uploadPost" onSubmit="return false;" class="postForm" id="postForm">
+      {% csrf_token %}
+      <h6 style="padding-top:2em;"><span class="error">*Required Fields</span></h6>
+      {{ uploadPostForm.non_field_errors }}
+      {{ uploadPostForm.source.errors }}
+      {{ uploadPostForm.source }}
+      {% if uploadMessages %}
+        <ul class="messages">
+            {% for message in uploadMessages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+      {% endif %}
       <p style="text-align:center;margin:0%;margin-bottom:-3%;">
-        <i class="fas fa-user-tie" style='font-size:18px;'></i> {{ user.username }}
-        {{uploadPostForm.postTitle}}
-        <span class="error">* {{uploadPostForm.postTitle.errors}}</span>
+      <i class="fas fa-user-tie" style='font-size:18px;'></i> {{ user.username }}
+      {{uploadPostForm.postTitle}}
+      <span class="error">* {{uploadPostForm.postTitle.errors}}</span>
       </p>
       <br><br>
       Issue Category : {{uploadPostForm.category}}
@@ -39,8 +37,10 @@
       {{uploadPostForm.content}}
       <span class="error">* {{uploadPostForm.content.errors}}</span><br>
       <center>
-       <input class="newPostSubmitButton" type="submit" name="submitPost" value="Post">
-       </center>
+      <input class="newPostSubmitButton" type="submit" name="submitPost" value="Post">
+     </center>
    </form>
-   </div>
+</div>
+<div>
+  <p>Fill in all the Required Fields to Upload Your Post !!</p>
 </div>

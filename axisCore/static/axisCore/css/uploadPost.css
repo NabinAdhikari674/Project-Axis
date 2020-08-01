@@ -17,11 +17,12 @@ input:focus
 .uploadPostForm
 {
   position: relative;
-  width:45%;
-  margin:auto;
-  margin-top: 1em;
+  width:50%;
+  margin-left:auto;
+  margin-right: auto;
+  margin-top:2px;
+  margin-bottom: 5em;
   padding:1em;
-  padding-top: 8px;
   padding-bottom: 5px;
 }
 .advancedPostButton

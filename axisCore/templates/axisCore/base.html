@@ -68,7 +68,10 @@
           <button type="button" name="homeButton"><a href=""> MenuOp2 </a></button>
       </div>
     </div>
-    {% include "axisCore/uploadPost.html" %}
+    <div class="overlapContentPage" id="overlapContentPage" style="display:none;">
+      <button type="button"name="uploadPostFormCloseButton"class="uploadPostFormCloseButton"id="uploadPostFormCloseButton"> Close </button>
+    </div>
+
     <div class='homeContent'>
        <div class="profileSidebar">
          <div class="sticky">
@@ -85,7 +88,7 @@
          {% include "axisCore/settingSidebar.html" %}
          <!--  {% include "axisCore/settingSidebar.html" with invoice=invoice %}  -->
          {% block customSidebar %} {% endblock customSidebar %}
- 
+
           </div>
         </div>
 

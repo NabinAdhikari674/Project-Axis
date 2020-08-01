@@ -26,5 +26,7 @@ class uploadPost(forms.Form):
     endDate = forms.DateField(label='endDate',required=False,
                                 widget=AdminDateWidget)
 
+
     class Meta:
-    	fields = ["postTitle","content","category","axisStatus","postLevel","budget","startDate","endDate"]
+        model = Post
+        fields = ["postTitle","content","category","axisStatus","postLevel","budget","startDate","endDate"]

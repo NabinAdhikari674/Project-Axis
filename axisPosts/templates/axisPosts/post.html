@@ -45,4 +45,8 @@
     {% endif %}
  </div>
 {% endblock %}
-{% include "axisPMS/pmsSidebar.html"%}
+
+{% block customSidebar %}
+      <span class="loadMoreButton"  id="loadMoreButton-{{post.id}}"  style="">customSidebar of axisPOSTS</span>
+      <span class="loadComplete"  id="loadComplete-{{post.id}}" title="Custom Sidebar From axisPosts">This is a Sidebar That is Controlled and Managed by Individual Apps</span>
+{% endblock customSidebar %}
