@@ -1,0 +1,22 @@
+.search input[type=text]{ 
+    width:300px; 
+    height:25px; 
+    border-radius:25px; 
+    border: none; 
+} 
+.sort{
+    width: 45vw;
+    z-index: 2;
+    margin-left: auto;
+    margin-right: auto;
+    height: 3em;
+    
+    top:0px;
+  }
+  .sort option{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width:100%;
+    padding-top: 0.5em;
+  }

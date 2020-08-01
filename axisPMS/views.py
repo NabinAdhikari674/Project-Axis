@@ -4,7 +4,9 @@ from django.shortcuts import render
 
 
 def pmsPostView(request):
-    #template = loader.get_template('axisCore/base.html')
-    context = {'pms':'pms'}
+    #template = loader.get_template('axisPMS/sort.html')
+    context = {'sort':'sort'}
     #return HttpResponse(template.render(context,request))
-    return render(request, 'axisPMS/pms.html', context)
+    return render(request, 'axisPMS/showpost.html', context)
+
+
