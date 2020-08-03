@@ -6,7 +6,7 @@ class PostViewAdmin(admin.ModelAdmin):
     list_display = ('id', 'postTitle', 'postSlug','postAuthor')
     list_filter = ("axisStatus","createdOn",'updatedOn','category')
     search_fields = ['postTitle', 'content','postAuthor']
-    prepopulated_fields = {'postSlug': ('postAuthor','postTitle')}
+    #prepopulated_fields = {'postSlug': ('postAuthor','postTitle')}
 
 class CommentViewAdmin(admin.ModelAdmin):
     list_display = ('id','postId', 'commentAuthor', 'comment','popularity','updatedOn')

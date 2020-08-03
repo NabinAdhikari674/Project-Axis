@@ -15,15 +15,15 @@ $(document).ready(function(){
       document.getElementById('axisMenu').style.display='none';
       document.body.style.overflow = "hidden";
       document.getElementById("axisNavbar").style.top = "0";
-      console.log("Button Pressed : Upload Post");
+      //console.log("Button Pressed : Upload Post");
       //alert("Button Pressed");
-      var csrf_token = getCookie('csrftoken');
+      //var csrf_token = getCookie('csrftoken');
         $.ajax({
             type:'POST',
             url:'base/postForm/',
-            data: {"csrfmiddlewaretoken" : csrf_token},
+            data: {},
             success:function(response){
-              console.log("Form Received");
+              //console.log("Form Received");
               //$(response).hide().appendTo(".overlapContentPage").fadeIn(10);
               if ($('.uploadPostForm').length) {
                  document.getElementById('uploadPostForm').style.display='block';
@@ -40,38 +40,16 @@ $(document).ready(function(){
        document.getElementById('axisMenu').style.display='block';
        document.body.style.overflow = "scroll";
       });
-
-    $(document).on('click','.newPostSubmitButton',function(){
-        console.log("Button Pressed : Submit Post");
-        var csrf_token = getCookie('csrftoken');
-          $.ajax({
-              type:'POST',
-              url:'base/uploadPost/',
-              data: {"csrfmiddlewaretoken" : csrf_token,uploadPostForm:$('#postForm').val() },
-              success:function(response){
-                console.log("Received");
-                //$(response).hide().appendTo(".overlapContentPage").fadeIn(10);
-                if ($('.uploadPostForm').length) {
-                   //document.getElementById('uploadPostForm').style.display='block';
-                 }
-                 else{
-                   //$(".overlapContentPage").append(response);
-                 }
-              }
-          });
-       });
-
-
-
 });
 
 function getCookie(name) {
     var cookieValue = null;
-    if (document.cookie && document.cookie != '') {
+    if (document.cookie && document.cookie !== '') {
         var cookies = document.cookie.split(';');
         for (var i = 0; i < cookies.length; i++) {
             var cookie = jQuery.trim(cookies[i]);
-            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                 break;
             }
@@ -79,7 +57,15 @@ function getCookie(name) {
     }
     return cookieValue;
 }
-
-function uploadPost(formData){
-    console.log("Uploading your Post")
+var csrftoken = getCookie('csrftoken');
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});

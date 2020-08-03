@@ -18,6 +18,14 @@ input:focus { /*#bdd4ff;*/
               0px 0px 2px rgba(0,100,255,1),
               0px 0px 3px rgba(0,100,255,1);
 }
+button {
+  background-color:#25292b;
+  color: var(--mainColor);
+}
+button:hover{
+  background:black;
+  color:white;
+}
 
 .axisNavbar{
   color:grey;
@@ -47,8 +55,9 @@ input:focus { /*#bdd4ff;*/
               0px 0px 5px rgba(75, 105, 101,1);
 
 }
-.advancedPostButton:hover{  color:white; }
+.advancedPostButton:hover{ color:white; }
 .newPostSubmitButton {
-  background-color:#3c619e;
+  background-color:#03658c;
+  color:var(--mainColor)
 }
-.newPostSubmitButton:hover { background-color:#03658c; }
+.newPostSubmitButton:hover { background-color:#015475;color:white; }

@@ -3,7 +3,7 @@ from django.views import generic
 from django.http import HttpResponse
 from django.template import loader
 from .models import Post,postComments,postReactions,commentReactions
-from axisCore.forms import uploadPost
+#from axisCore.forms import uploadPostForm
 # Create your views here.
 class PostList(generic.ListView):
     post_list = Post.objects.order_by('-popularity')
@@ -21,8 +21,8 @@ def postView(request):
     post_list = Post.objects.order_by('-popularity')
     #template = loader.get_template('axisPosts/post.html')
     #template = 'post.html'
-    uploadPostForm = uploadPost()
-    context = {'post_list':post_list,'uploadPostForm':uploadPostForm}
+    #uploadPostForm = uploadPostForm()
+    context = {'post_list':post_list}
     #return HttpResponse(template.render(context,request))
     return render(request, 'axisPosts/post.html', context)
 def postDetail(request):
