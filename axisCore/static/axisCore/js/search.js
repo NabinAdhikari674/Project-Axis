@@ -1,11 +1,5 @@
 
 $(document).ready(function(){
-    $(document).on ('click','searchQueryField',function () {
-       
-  });
-  
-    
-  
     $(document).on('click','.searchQueryButton',function(){
         //console.log("Button Pressed : Submit Post");
         document.getElementById('overlapContentPage').style.display='block';
@@ -13,10 +7,7 @@ $(document).ready(function(){
         document.body.style.overflow = "hidden";
         document.getElementById("axisNavbar").style.top = "0";
         var fd =  $('#inputSuccess4').val();
-        console.log("clicked")
-
-        
-  
+        //console.log("clicked")
           $.ajax({
               type:'GET',
               url:'search/',
@@ -35,7 +26,10 @@ $(document).ready(function(){
        });
   
   });
-  
+function searchClicker(){
+    $('.searchQueryButton').click();
+};
+
   $.ajaxSetup({
       beforeSend: function(xhr, settings) {
           if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
