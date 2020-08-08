@@ -5,4 +5,5 @@ app_name = 'axisPMS' # NameSpace for app
 
 urlpatterns = [
     path('', views.pmsPostView, name='pmspostView'),
+    path('search/',views.searchPost,name='searchPost'),
 ]
