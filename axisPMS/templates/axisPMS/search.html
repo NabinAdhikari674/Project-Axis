@@ -1,0 +1,45 @@
+
+{% block stylesheet %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'axisPosts/css/postFeed.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'axisPosts/css/themes/darkMode.css' %}">
+{% endblock %}
+{% block javascript %}
+
+{% endblock %}
+
+<div class="postFeed" id="postFeed">
+  {% if data %}
+      {% for post in data %}
+        <div class='postFeedCard'>
+                <div class="postFeedTitle">
+                  {{ post.projectTitle }}
+                  <small>| Id : {{ post.id }}</small>
+                </div> <hr style="margin:5px;margin-top:3px;">
+                <div class="postFeedText">&raquo; {{ post.content }} &laquo;</div>
+                <div class="postFeedPopu">
+                  &#9889;
+                  <span id="popuCounter-{{ post.id }}"> {{ post.popularity }}</span>
+                  <span id="popuMsg-{{ post.id }}"></span>
+                </div>
+                <form method="post" class="postFeedReact">
+                  <button type="button" class="postFeedReactUp" id="postFeedReactUp-{{ post.id }}" value=0 >&#9650;Up</button>
+                  <button type="button" class="postFeedReactDown" id="postFeedReactDown-{{ post.id }}" value=0 >&#9660;Meh!</button>
+                  <button type="button" name="viewPost" class="postFeedViewButton" id="postFeedViewButton-{{ post.id }}">View Post</button>
+                </form>
+                <div class="post-upd"><small> Updated At : {{ post.updatedOn }}</small></div>
+            </div>
+            {% endfor %}
+            <div class="loadMore" id="loadMore-{{post.id}}">
+              <span class="loadMoreButton"  id="loadMoreButton-{{post.id}}" title="Click to Show More Post Feeds">Load More Posts ?</span>
+              <span class="loadingButton" id="loadingButton-{{post.id}}" style="display:none;">Loading ... </span>
+            </div>
+    {% else %}
+    <div class="loadMore" id="loadCompleteDiv">
+      <span class="loadMoreButton"  id="loadMoreButton-{{post.id}}"  style="display:none;">Load More Posts ?</span>
+      <span class="loadComplete"  id="loadComplete-{{post.id}}" title="You Finished All Post Feed Reads :) ">No result found :) !!</span>
+    </div>
+    {% endif %}
+ </div>
+
+
