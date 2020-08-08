@@ -29,7 +29,7 @@
         </button>
         <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
           <ul class="nav navbar-nav ml-auto">
-            <form class="form-inline search-form" role="form" action="" onSubmit="return false;" >
+            <form class="form-inline search-form" role="form" action="gautam" onSubmit="return false;" >
               <div class="form-group has-success has-feedback">
                 <label class="control-label" for="inputSuccess4"></label>
                 <input type="text" class="form-control searchQueryField" id="inputSuccess4" placeholder="Search" required>
@@ -50,11 +50,11 @@
              <span style="font-size:28px;">
                {% if user.is_authenticated %}
                     {{ user.username }}
-                    <a style="font-size:15px;" href="/users/logout"> Log Out </a>
+                    <a style="font-size:15px;" href="{% url 'axisUsers:logout' %}"> Log Out </a>
                   {%else%}
                     <h5>Guest</h5>
-                    <h6>Already Have an Account ? <a style="font-size:15px;" href="users/login"> Login Here </a></h6>
-                    <h6>Not Yet Registered ? <a style="font-size:15px;" href="users/register"> Register Here </a></h6>
+                    <h6>Already Have an Account ? <a style="font-size:15px;" href="{% url 'axisUsers:login' %}"> Login Here </a></h6>
+                    <h6>Not Yet Registered ? <a style="font-size:15px;" href="{% url 'axisUsers:register' %}"> Register Here </a></h6>
                 {% endif %}
               </span>
            </h3>
@@ -62,11 +62,11 @@
       </div>
     <div class="axisMenu" id="axisMenu">
       <div class="axisMenuButtons">
-          <button type="button" name="homeButton"><a href=".."> Home </a></button>
-          <button type="button" name="homeButton"><a href="pms/"> PMS </a></button>
-          <button type="button" name="homeButton"><a href="users/register"> Register </a></button>
-          <button type="button" name="homeButton"><a href="users/login"> Login </a></button>
-          <button type="button" name="homeButton"><a href=""> MenuOp2 </a></button>
+          <button type="button" name="homeButton"><a href="{% url 'axisPosts:postView' %}"> Home </a></button>
+          <button type="button" name="homeButton"><a href="{% url 'axisPMS:pmsPostView' %}"> PMS </a></button>
+          <button type="button" name="homeButton"><a href="{% url 'axisUsers:register' %}"> Register </a></button>
+          <button type="button" name="homeButton"><a href="{% url 'axisUsers:login' %}"> Login </a></button>
+          <button type="button" name="homeButton"><a href="{% url 'axisUsers:termsAndConditions' %}"> Terms </a></button>
       </div>
     </div>
     <div class="overlapContentPage" id="overlapContentPage" style="display:none;">
@@ -94,13 +94,14 @@
         </div>
 
      </div>
-     <footer>
-       <p>Developer : Nabin Adhikari & Gautam Bohara<br>
-         © 2020 Leo Industries<br>
-       <a href="mailto:nabinadhikari674@gmail.com"  target="_blank">nabinadhikari674@gmail.com</a><br>
-       <a href="https://github.com/NabinAdhikari674"  target="_blank">GitHub : Nabin</a><br>
-       <a href="https://github.com/gautam591"  target="_blank">GitHub : Gautam</a></p>
-     </footer>
-     {% block javascript %} {% endblock %}
+
+   <footer>
+     <p>Developer : Nabin Adhikari & Gautam Bohara<br>
+       © 2020 Leo Industries<br>
+     <a href="mailto:nabinadhikari674@gmail.com"  target="_blank">nabinadhikari674@gmail.com</a><br>
+     <a href="https://github.com/NabinAdhikari674"  target="_blank">GitHub : Nabin</a><br>
+     <a href="https://github.com/gautam591"  target="_blank">GitHub : Gautam</a></p>
+   </footer>
+   {% block javascript %} {% endblock %}
   </body>
 </html>

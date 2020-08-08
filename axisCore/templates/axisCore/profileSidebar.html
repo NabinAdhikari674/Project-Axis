@@ -3,7 +3,7 @@
   <p>Profile and More</p>
   <ul class="navbar-nav mr-auto nav-fill">
     <li class="nav-item active">
-      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-link" href="{% url 'axisPosts:postView' %}">Home <span class="sr-only">(current)</span></a>
     </li>
     <li class="nav-item">
       <label class="colorModeSwitch">
@@ -13,10 +13,10 @@
        </label>
     </li>
     <li class="nav-item">
-      <button type="button" name="uploadPostButton" class="uploadPostButton">Upload Post</button>
+      <button type="button" name="uploadPostButton" class="uploadPostButton">Upload Post </button>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="user/register">Register</a>
+      <a class="nav-link" href="{% url 'axisUsers:register' %}">Register</a>
     </li>
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

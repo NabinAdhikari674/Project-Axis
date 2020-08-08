@@ -13,9 +13,9 @@ class Post(models.Model):
     category = models.IntegerField(default=0) #Post Category:Regular/Complaint/Concern/Movement/Awareness
     axisStatus = models.IntegerField(default=0) # Issue Status : Planning/OnGoing/Ended/Cancelled/Suspended
     postLevel = models.IntegerField(default=0) #Post Type/Level : Gov/Community/Private/Charity/Org
-    budget = models.IntegerField(default=0)
-    startDate = models.DateTimeField(blank=True,null=True)
-    endDate = models.DateTimeField(blank=True,null=True)
+    budget = models.IntegerField(default=0,null=True,blank=True)
+    startDate = models.DateField(blank=True,null=True)
+    endDate = models.DateField(blank=True,null=True)
     popularity = models.BigIntegerField(default=0)
     updatedOn = models.DateTimeField(auto_now=True)
     createdOn = models.DateTimeField(auto_now_add=True)

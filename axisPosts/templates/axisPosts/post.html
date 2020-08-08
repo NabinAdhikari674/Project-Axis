@@ -10,8 +10,6 @@
 
 {% block content %}
 <div class="postFeed" id="postFeed">
-  {{PostList}}
-  {{queryset}}
   {% if post_list %}
       {% for post in post_list %}
         <div class='postFeedCard'>
