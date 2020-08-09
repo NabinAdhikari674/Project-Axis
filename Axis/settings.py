@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 AUTH_USER_MODEL = 'axisUsers.User'
+LOGIN_URL = 'axisUsers:login'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -85,7 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'axisDatabase',
         'USER': 'postgres',
-        'PASSWORD': 'gautam',
+        'PASSWORD': 'leonardo',
         'HOST': 'localhost',
         'PORT': '',
     }

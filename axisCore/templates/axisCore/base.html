@@ -31,6 +31,7 @@
         <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
           <ul class="nav navbar-nav ml-auto">
             <form class="form-inline search-form" role="form" action="gautam" onSubmit="return false;" >
+              {% csrf_token %}
               <div class="form-group has-success has-feedback">
                 <label class="control-label" for="inputSuccess4"></label>
                 <input type="text" class="form-control searchQueryField" id="inputSuccess4" placeholder="Search" required>
