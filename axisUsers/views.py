@@ -53,3 +53,14 @@ def terms(request) :
     #template = loader.get_template('axisUsers/terms.html')
     context = {'terms':'termsAndConditions'}
     return render(request,'axisUsers/terms.html',context)
+
+'''
+def validate_username(request):
+    username = request.GET.get('username', None)
+    data = {
+        'is_taken': User.objects.filter(username__iexact=username).exists()
+    }
+    if data['is_taken']:
+        data['error_message'] = 'A user with this username already exists.'
+    return JsonResponse(data)
+'''

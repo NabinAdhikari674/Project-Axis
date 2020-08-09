@@ -1,42 +1,29 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render
-from django.views import generic
-from django.http import HttpResponse
-from django.template import loader
-from .models import Post,postComments,postReactions,commentReactions
-#from axisCore.forms import uploadPostForm
-# Create your views here.
-class PostList(generic.ListView):
-    post_list = Post.objects.order_by('-popularity')
-    #template = loader.get_template('axisPosts/post.html')
-    #template = 'post.html'
-    context = {'post_list':post_list}
-    #return HttpResponse(template.render(context,request))
+#from django.views import generic
+#from django.http import HttpResponse
+#from django.template import loader
+from .models import Post
+#from .models import postComments,postReactions,commentReactions
 
-
-class PostDetail(generic.DetailView):
-    model = Post
-    template_name = 'postDetail.html'
 
 def postView(request):
+    model = Post.objects.all()
+    postPG = Paginator(model, 10)
+    firstPage = postPG.get_page(1)
+    #pageRange = postPG.page_range
+    context = {'post_list': firstPage,'page_n':1}
+
+    if request.method == 'POST':
+        page_n = int(request.POST.get('page_n', None))
+        page_n += 1
+        results = postPG.get_page(page_n)
+        context = {'post_list': results,'page_n':page_n}
+        return render(request, 'axisPosts/postList.html',context) 
+
+    return render(request,'axisPosts/post.html',context) 
+
+def postViewTest1(request):
     post_list = Post.objects.order_by('-popularity')
-    #template = loader.get_template('axisPosts/post.html')
-    #template = 'post.html'
-    #uploadPostForm = uploadPostForm()
     context = {'post_list':post_list}
-    #return HttpResponse(template.render(context,request))
     return render(request, 'axisPosts/post.html', context)
-def postDetail(request):
-    post_list = Post.objects.order_by('-popularity')
-    #template = loader.get_template('axisPosts/postDetail.html')
-    #template = 'post.html'
-    context = {'post_list':post_list}
-    #return HttpResponse(template.render(context,request))
-    return render(request, 'axisPosts/postDetail.html', context)
-def validate_username(request):
-    username = request.GET.get('username', None)
-    data = {
-        'is_taken': User.objects.filter(username__iexact=username).exists()
-    }
-    if data['is_taken']:
-        data['error_message'] = 'A user with this username already exists.'
-    return JsonResponse(data)

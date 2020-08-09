@@ -75,10 +75,11 @@
   cursor: pointer;
   float: right;
 }
+/*
 .postFeedReactUp:hover {  }
 .postFeedReactDown:hover {  }
 .postFeedView-Button:hover {  }
-
+*/
 .postUpd
 {
   margin-bottom: 0px;
@@ -90,19 +91,21 @@
   margin-top:0px;
   padding:10px;
   text-align: center;
-  width:45vw;
+  width:100%;
   margin-left: auto;
   margin-right: auto;
 }
-.loadMore-button, .loadComplete
+.loadMoreButton, .loadComplete
 {
   text-align: center;
-  font-weight: bold;
+  font-weight: bolder;
   float: center;
   font-size: 20px;
   line-height: 15px;
   cursor: pointer;
   transition: 0.3s;
 }
+/*
 .loadMoreButton:hover { }
 .loadComplete:hover { }
+*/
