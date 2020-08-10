@@ -16,6 +16,27 @@
 {% endblock %}
 
 {% block customSidebar %}
-      <span>customSidebar of axisPOSTS</span>
-      <span title="Custom Sidebar From axisPosts">This is a Sidebar That is Controlled and Managed by Individual Apps</span>
+    <div class='sidebarDiv'>
+        <p class='sidebarTitle'> Post Sidebar </p>
+        {% if user.is_authenticated %}
+            <div class='sidebarElement' id='userCustomPost'>
+                <i class="fas fa-cog"></i>
+                User Customizations 
+            </div>
+            <div class='sidebarElement' id='suscribedPosts'>
+                Suscribe Posts
+            </div>
+        {% endif %}
+        <div class='sidebarElement' id='customSidebarPost1'>
+            More Options 1
+        </div>
+        <div class='sidebarElement' id='customSidebarPost2'>
+            More Options 2
+        </div>
+        <p class='sidebarTitle'> More for Custom Post Sidebar</p>
+        <div class='sidebarElement' id='viewProfileButton'>
+        <i class="fas fa-comment-dots"></i>
+        Chat
+        </div>
+    </div>
 {% endblock customSidebar %}

@@ -5,13 +5,22 @@ font-weight: normal;
 src: local('StrokeyBacon'), url('../fonts/StrokeyBacon.woff') format('woff');
 }
 body{
+  background-color: var(--mainBG);
   text-align: justify;
 }
 footer {
   text-align: center;
   padding: 3px;
-  background-color: black;
-  color: white;
+  background-color: var(--black);
+  color: var(--mainColor);
+}
+input {
+  background-color: var(--inputBG);
+  color: var(--mainColor);
+}
+input:focus {
+  background-color: var(--black);
+  border : 1px solid var(--borderColor);
 }
 
 
@@ -24,6 +33,8 @@ footer {
   position:fixed;
   width:100%;
   z-index:1;
+  color:grey;
+  background: black;
 }
 .form-control {
     padding-right: 30px;
@@ -52,27 +63,12 @@ footer {
   font-size: 16px;
 }
 
-/* ======================== MENU ========================================= */
-.axisMenu{
-  width: 44vw;
-  z-index: 2;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 1em;
-  height: 3em;
-  position: sticky;
-  top:0px;
-  border: 1px solid #353738;
-  border-radius: 2px;
-}
-.axisMenuButtons{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width:100%;
-  padding-top: 0.5em;
-}
+/* ======================== Head Content ========================================= */
 
+.headContent{
+  background-color: var(--black);
+  color:var(--mainColor);
+}
 
 /* ======================== Content ========================================= */
 
@@ -96,6 +92,7 @@ footer {
   height: auto;
   position: sticky;
   top: 4em;/* Where it stops */
+  color: var(--mainColor)
 }
 
 ::-webkit-scrollbar {
@@ -126,4 +123,5 @@ body::-webkit-scrollbar {
   right: 0;
   bottom: 1px;
   z-index: 3;
+  background-color: rgba(0, 0, 0, 0.8);
 }

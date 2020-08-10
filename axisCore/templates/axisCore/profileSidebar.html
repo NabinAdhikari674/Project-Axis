@@ -1,22 +1,71 @@
 {% block profileSidebar %}
   <div class='sidebarDiv'>
-    <center><p> User Profile </p></center>
     {% if user.is_authenticated %}
-      <div class="sidebarElement">
-        <button type="button" name="viewProfileButton" class="viewProfileButton">
-          <i class='fas fa-user-tie' style='font-size:23px;'></i> My Profile 
-        </button>
+      <p class='sidebarTitle'> User Profile </p>
+      <div class='sidebarElement' id='viewProfileButton'>
+        <i class='fas fa-user-tie' style='font-size:18px;'></i>
+        My Profile 
       </div>
-      <div class="sidebarElement">
-        <button type="button" name="uploadPostButton" class="uploadPostButton">Upload Post </button>
+      <div class="sidebarElement" id='uploadPostButton'>
+        <i class="fas fa-upload"></i>
+        Upload Post
+      </div>
+      <div class="sidebarElement" id='viewCoinButton'>
+        <i class="fas fa-copyright"></i>
+        My Axis Coins
+      </div>
+      <div class="sidebarElement" id='axisPremiumButton'>
+        <i class="fas fa-shield-alt"></i>
+        Axis Premium
+      </div>
+      <p class='sidebarTitle'> More </p>
+      <div class="sidebarElement" id='helpCenter'>
+        <i class="fas fa-question-circle"></i>
+        Help Center
       </div>
     {%else%}
-        <i class="fas fa-user-secret"></i>
-        <h6>Joined Axis ?<a style="font-size:15px;" href="{% url 'axisUsers:login' %}"> Login Here </a></h6>
+      <p class='sidebarTitle'>
+        Anynomous User ( Anon ) Profile  
+      </p>   
+      <div class="sidebarElement" id='whatAxisButton'>
+        <i style="font-family:'StrokeyBacon';font-size:25px;padding:0;padding-right:4px;">A</i>
+        What is Project Axis ?
+      </div>
+      <div class="sidebarElement" id='thingsYouCanDoButton'>
+        <i class="fas fa-hands-helping"></i>
+        Things You Can Do
+      </div>
+      <div class="sidebarElement" id='uploadAnonPostButton'>
+        <i class="fas fa-upload"></i>
+        Upload Post as Anon
+      </div>
+      <p class='sidebarTitle'> More </p>
+      <div class="sidebarElement" id='helpCenter'>
+        <i class="fas fa-question-circle"></i>
+        Help Center
+      </div>
+      <div class="sidebarElement">
+        <h6> Axis User ?<a style="font-size:15px;" href="{% url 'axisUsers:login' %}"> Login Here </a></h6>
+      </div>
+      <div class="sidebarElement" id='uploadAnonPostButton'>
         <h6>Not Registered ? <a style="font-size:15px;" href="{% url 'axisUsers:register' %}"> Register Here </a></h6>
+      </div>
+      
     {% endif %}
   </div>
+
   <div class='sidebarHelp'>
-    <a href="{% url 'axisPosts:postView' %}"> Home <span class="sr-only">(current)</span></a>
+    <div class="sidebarElement">
+      <a href="{% url 'axisPosts:postView' %}" class="sidebarElement"> Home</a>
+    </div>
+    <div class="sidebarElement">
+      <a href="{% url 'axisCore:base' %}" class="sidebarElement"> Base</a>
+    </div>
+    <div class="sidebarElement">
+      <a href="{% url 'axisUsers:login' %}" class="sidebarElement"> Login Page</a>
+    </div>
+    <div class="sidebarElement">
+      <a href="{% url 'axisUsers:register' %}" class="sidebarElement"> Registration Page</a>
+    </div>
   </div>
 {% endblock profileSidebar%}

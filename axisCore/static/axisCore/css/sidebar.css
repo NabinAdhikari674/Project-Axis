@@ -4,10 +4,43 @@
   height: auto;
   position: relative;
   padding-right:auto;
+  
 }
 .sidebarDiv{
-  border: 1px solid #353738;
+  text-align: left;
   border-radius: 8px;
+  margin-bottom: 1em;
+  background-color: var(--cardBG);
+  border: 1px solid var(--borderColor);
+
+}
+.sidebarTitle{
+  padding:0.8em;
+  padding-bottom:0.2em;
+  margin-bottom: 0;
+  font-size: small;
+  color: var(--white) ;
+}
+.sidebarElement{
+  width: 100%;
+  padding:0.5em;
+  padding-left:1em;
+  cursor: pointer;
+}
+.sidebarElement:hover{
+  background-color: var(--mainBG);
+  color: var(--white);
+}
+.uploadPostButton{
+  width:100%;
+  background-color: var(--cardBG);
+  border: none;
+}
+.sidebarHelp{
+  background-color: var(--cardBG);
+  border: 1px solid var(--borderColor);
+  border-radius: 8px;
+  text-align: left;
 }
 .settingSidebar
 {
@@ -39,10 +72,12 @@
 
 
 .colorModeSwitch {
+  padding-top: 0;
+  margin-top: 0;
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 45px;
+  height: 20px;
 }
 
 .colorModeSwitch input {
@@ -66,10 +101,10 @@
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
+  height: 18px;
+  width: 18px;
+  left: 2px;
+  bottom: 1px;
   background-color: white;
   -webkit-transition: .4s;
   transition: .4s;
@@ -84,9 +119,9 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  -webkit-transform: translateX(23px);
+  -ms-transform: translateX(23px);
+  transform: translateX(23px);
 }
 
 /* Rounded sliders */

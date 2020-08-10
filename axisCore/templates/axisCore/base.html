@@ -12,6 +12,7 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'axisCore/css/base.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'axisCore/css/sidebar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'axisCore/css/axisMenu.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'axisCore/css/themes/darkMode.css' %}">
     <link rel="shortcut icon" type="image/png" href="{% static 'axisCore/favicon.ico' %}">
     {% block stylesheet %}{% endblock %}
@@ -65,11 +66,26 @@
       </div>
     <div class="axisMenu" id="axisMenu">
       <div class="axisMenuButtons">
-          <button type="button" name="homeButton"><a href="{% url 'axisPosts:postView' %}"> Home </a></button>
-          <button type="button" name="homeButton"><a href="{% url 'axisPMS:pmsPostView' %}"> PMS </a></button>
-          <button type="button" name="homeButton"><a href="{% url 'axisUsers:register' %}"> Register </a></button>
-          <button type="button" name="homeButton"><a href="{% url 'axisUsers:login' %}"> Login </a></button>
-          <button type="button" name="homeButton"><a href="{% url 'axisUsers:termsAndConditions' %}"> Terms </a></button>
+          <a class="axisMenuElements activeMenuElement" title="Home" href="{% url 'axisPosts:postView' %}">
+            <i class="fas fa-home" style="font-size: 1.5em;margin-bottom:0;padding-top:4px;"></i>
+            <i style="font-style:normal;font-size:10px;margin-top:0;padding-top: 0;">Home</i> 
+          </a>
+          <a class="axisMenuElements" title="PMS" href="{% url 'axisPMS:pmsPostView' %}">
+            <i class="fas fa-tools" style="font-size: 1.5em;margin-bottom:0;padding-top:4px;"></i>
+            <i style="font-style:normal;font-size:10px;margin-top:0;padding-top: 0;">PMS</i> 
+          </a>
+          <a class="axisMenuElements " title="Cool Ninja" href="#">
+            <i class="fas fa-user-ninja" style="font-size: 1.5em;margin-bottom:0;padding-top:4px;"></i>
+            <i style="font-style:normal;font-size:10px;margin-top:0;padding-top: 0;">Ninja</i> 
+          </a>
+          <a class="axisMenuElements" title="Axis Network" href="#">
+            <i class="fas fa-globe" style="font-size: 1.5em;margin-bottom:0;padding-top:4px;"></i>
+            <i style="font-style:normal;font-size:10px;margin-top:0;padding-top: 0;">Axis Network</i> 
+          </a>
+          <a class="axisMenuElements" title="Terms" href="{% url 'axisUsers:termsAndConditions' %}">
+            <i class="fas fa-file-contract" style="font-size: 1.5em;margin-bottom:0;padding-top:4px;"></i>
+            <i style="font-style:normal;font-size:10px;margin-top:0;padding-top: 0;">Terms</i> 
+          </a>
       </div>
     </div>
     <div class="overlapContentPage" id="overlapContentPage" style="display:none;">
@@ -104,7 +120,7 @@
    {% block javascript %} {% endblock %}
    <script>
      $(document).ready(function(){
-        $(document).on('click','.uploadPostButton',function(){
+        $(document).on('click','#uploadPostButton',function(){
           document.getElementById('overlapContentPage').style.display='block';
           document.getElementById('axisMenu').style.display='none';
           document.body.style.overflow = "hidden";
