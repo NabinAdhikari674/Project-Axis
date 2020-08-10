@@ -10,30 +10,7 @@ $(document).ready(function(){
       prevScrollpos = currentScrollPos;
     }
 
-    $(document).on('click','.uploadPostButton',function(){
-      document.getElementById('overlapContentPage').style.display='block';
-      document.getElementById('axisMenu').style.display='none';
-      document.body.style.overflow = "hidden";
-      document.getElementById("axisNavbar").style.top = "0";
-      //console.log("Button Pressed : Upload Post");
-      //alert("Button Pressed");
-      //var csrf_token = getCookie('csrftoken');
-        $.ajax({
-            type:'POST',
-            url:'base/postForm/',
-            data: {},
-            success:function(response){
-              //console.log("Form Received");
-              //$(response).hide().appendTo(".overlapContentPage").fadeIn(10);
-              if ($('.uploadPostForm').length) {
-                 document.getElementById('uploadPostForm').style.display='block';
-               }
-               else{
-                 $(".overlapContentPage").append(response);
-               }
-            }
-        });
-     });
+    
     $(document).on('click','.uploadPostFormCloseButton',function(){
        document.getElementById('overlapContentPage').style.display='none';
        document.getElementById('uploadPostForm').style.display='none';

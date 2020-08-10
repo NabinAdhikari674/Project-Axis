@@ -105,5 +105,31 @@
      <a href="https://github.com/gautam591"  target="_blank">GitHub : Gautam</a></p>
    </footer>
    {% block javascript %} {% endblock %}
+   <script>
+     $(document).ready(function(){
+        $(document).on('click','.uploadPostButton',function(){
+          document.getElementById('overlapContentPage').style.display='block';
+          document.getElementById('axisMenu').style.display='none';
+          document.body.style.overflow = "hidden";
+          document.getElementById("axisNavbar").style.top = "0";
+            $.ajax({
+                type:'POST',
+                url:"{% url 'axisCore:uploadPostFormView' %}",
+                data: {},
+                success:function(response){
+                  //console.log("Form Received");
+                  //$(response).hide().appendTo(".overlapContentPage").fadeIn(10);
+                  if ($('.uploadPostForm').length) {
+                    document.getElementById('uploadPostForm').style.display='block';
+                  }
+                  else{
+                    $(".overlapContentPage").append(response);
+                  }
+                }
+            });
+        });
+    });
+
+   </script>
   </body>
 </html>
