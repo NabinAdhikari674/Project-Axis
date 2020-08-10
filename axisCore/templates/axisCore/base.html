@@ -48,15 +48,16 @@
         <center style="padding-top:5em;padding-bottom:0em;">
            <h1> Welcome to Project Axis</h1>
            <h3>
-             <i class='fas fa-user-tie' style='font-size:23px;'></i>
              <span style="font-size:28px;">
                {% if user.is_authenticated %}
-                    {{ user.username }}
-                    <a style="font-size:15px;" href="{% url 'axisUsers:logout' %}"> Log Out </a>
-                  {%else%}
-                    <h5>Guest</h5>
-                    <h6>Already Have an Account ? <a style="font-size:15px;" href="{% url 'axisUsers:login' %}"> Login Here </a></h6>
-                    <h6>Not Yet Registered ? <a style="font-size:15px;" href="{% url 'axisUsers:register' %}"> Register Here </a></h6>
+                  <i class='fas fa-user-tie' style='font-size:23px;'></i>
+                  {{ user.username }}
+                  <a style="font-size:15px;" href="{% url 'axisUsers:logout' %}"> Log Out </a>
+                {%else%}
+                  <i class="fas fa-user-secret"></i>
+                  <h5>Guest</h5>
+                  <h6>Already Have an Account ? <a style="font-size:15px;" href="{% url 'axisUsers:login' %}"> Login Here </a></h6>
+                  <h6>Not Yet Registered ? <a style="font-size:15px;" href="{% url 'axisUsers:register' %}"> Register Here </a></h6>
                 {% endif %}
               </span>
            </h3>
@@ -74,27 +75,23 @@
     <div class="overlapContentPage" id="overlapContentPage" style="display:none;">
       <button type="button"name="uploadPostFormCloseButton"class="uploadPostFormCloseButton"id="uploadPostFormCloseButton"> Close </button>
     </div>
-
     <div class='homeContent'>
-       <div class="profileSidebar">
-         <div class="sticky">
-         {% include "axisCore/profileSidebar.html" %}
-          </div>
-       </div>
-       <main class="mainContent">
-           {% block content %}
-
-          {% endblock content %}
-        </main>
-       <div class="settingSidebar">
-          <div class="sticky">
-         {% include "axisCore/settingSidebar.html" %}
-         <!--  {% include "axisCore/settingSidebar.html" with invoice=invoice %}  -->
-         {% block customSidebar %} {% endblock customSidebar %}
-
-          </div>
+      <div class="profileSidebar">
+        <div class="sticky">
+          {% include "axisCore/profileSidebar.html" %}
         </div>
+      </div>
 
+      <main class="mainContent">
+        {% block content %} {% endblock content %}
+      </main>
+
+      <div class="settingSidebar">
+        <div class="sticky">
+        {% include "axisCore/settingSidebar.html" %}
+        {% block customSidebar %} {% endblock customSidebar %}
+        </div>
+      </div>
      </div>
 
    <footer>

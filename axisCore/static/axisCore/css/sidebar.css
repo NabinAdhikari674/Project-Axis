@@ -3,16 +3,39 @@
   width: 20vw;
   height: auto;
   position: relative;
-  padding-right:5vw;
-
+  padding-right:auto;
+}
+.sidebarDiv{
+  border: 1px solid #353738;
+  border-radius: 8px;
 }
 .settingSidebar
 {
   height: auto;
   width: 20vw;
   position: relative;
-  padding-left:5vw;
+  padding-left:auto;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .colorModeSwitch {

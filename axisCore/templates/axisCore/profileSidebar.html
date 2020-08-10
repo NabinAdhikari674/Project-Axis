@@ -1,39 +1,22 @@
 {% block profileSidebar %}
-<!-- Profile Sidebar Widgets Column -->
-  <p>Profile and More</p>
-  <ul class="navbar-nav mr-auto nav-fill">
-    <li class="nav-item active">
-      <a class="nav-link" href="{% url 'axisPosts:postView' %}">Home <span class="sr-only">(current)</span></a>
-    </li>
-    <li class="nav-item">
-      <label class="colorModeSwitch">
-         <input type="checkbox" class="themeSwitch">
-         <span class="slider round"></span>
-         <span class="themeMsg"></span>
-       </label>
-    </li>
-    <li class="nav-item">
-      <button type="button" name="uploadPostButton" class="uploadPostButton">Upload Post </button>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'axisUsers:register' %}">Register</a>
-    </li>
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Services
-      </a>
-      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="#">Web Development</a>
-        <a class="dropdown-item" href="#">Machine Learning</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Game Development</a>
+  <div class='sidebarDiv'>
+    <center><p> User Profile </p></center>
+    {% if user.is_authenticated %}
+      <div class="sidebarElement">
+        <button type="button" name="viewProfileButton" class="viewProfileButton">
+          <i class='fas fa-user-tie' style='font-size:23px;'></i> My Profile 
+        </button>
       </div>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">My Posts</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled" href="#">Hidden Text</a>
-    </li>
-  </ul>
+      <div class="sidebarElement">
+        <button type="button" name="uploadPostButton" class="uploadPostButton">Upload Post </button>
+      </div>
+    {%else%}
+        <i class="fas fa-user-secret"></i>
+        <h6>Joined Axis ?<a style="font-size:15px;" href="{% url 'axisUsers:login' %}"> Login Here </a></h6>
+        <h6>Not Registered ? <a style="font-size:15px;" href="{% url 'axisUsers:register' %}"> Register Here </a></h6>
+    {% endif %}
+  </div>
+  <div class='sidebarHelp'>
+    <a href="{% url 'axisPosts:postView' %}"> Home <span class="sr-only">(current)</span></a>
+  </div>
 {% endblock profileSidebar%}

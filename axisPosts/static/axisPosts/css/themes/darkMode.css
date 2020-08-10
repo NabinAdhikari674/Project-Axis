@@ -1,8 +1,3 @@
-:root {
-  --mainBG : #212121;
-  --main2BG : #343a40;
-  --mainColor : #d1d1d1;
-}
 small{
    color:grey;
 }
@@ -14,10 +9,10 @@ small{
   background: #009973;
 }
 .postFeed {
-  background-image: linear-gradient(#12313b, #138e55);
+  /*background-image: linear-gradient(#12313b, #138e55);*/
 }
 .postFeedCard{
-  background-color: #1d1f20;
+  background-color: var(--cardBG);
   color: var(--mainColor);
 }
 .postFeedText {

@@ -54,13 +54,16 @@ footer {
 
 /* ======================== MENU ========================================= */
 .axisMenu{
-  width: 45vw;
+  width: 44vw;
   z-index: 2;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 1em;
   height: 3em;
   position: sticky;
   top:0px;
+  border: 1px solid #353738;
+  border-radius: 2px;
 }
 .axisMenuButtons{
   display: flex;
