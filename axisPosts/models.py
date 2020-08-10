@@ -2,6 +2,8 @@ from django.db import models
 from django.utils.text import slugify
 from axisUsers.models import User
 from autoslug import AutoSlugField
+import re
+
 # Create your models here.
 class Post(models.Model):
     postTitle = models.CharField(max_length=200,unique=False)
@@ -21,7 +23,7 @@ class Post(models.Model):
     createdOn = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['popularity']
+        ordering = ['-popularity']
     def __str__(self):
         return self.postTitle
 
@@ -47,9 +49,6 @@ class commentReactions(models.Model):
     commentId = models.IntegerField()
     userName = models.ForeignKey(User,on_delete= models.CASCADE)
     reaction = models.IntegerField()
-import re
-from django.template.defaultfilters import slugify
-
 
 def unique_slugify(instance, value, slug_field_name='slug', queryset=None,
                    slug_separator='-'):
