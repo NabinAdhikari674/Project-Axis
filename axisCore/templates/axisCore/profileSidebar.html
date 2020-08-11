@@ -2,9 +2,9 @@
   <div class='sidebarDiv'>
     {% if user.is_authenticated %}
       <p class='sidebarTitle'> User Profile </p>
-      <div class='sidebarElement' id='viewProfileButton'>
+      <div class='sidebarElement' id='viewProfileButton' onclick="location.href='{% url 'axisUsers:profile' %}';">
         <i class='fas fa-user-tie' style='font-size:18px;'></i>
-        My Profile 
+        My Profile
       </div>
       <div class="sidebarElement" id='uploadPostButton'>
         <i class="fas fa-upload"></i>

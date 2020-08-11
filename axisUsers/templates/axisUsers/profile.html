@@ -1,0 +1,119 @@
+{% extends "axisCore/base.html" %}
+{% block stylesheet %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'axisUsers/css/profile.css' %}">
+{% endblock %}
+{% block javascript %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="profileDiv" id="profileDiv">
+        <div class='profileEditIcon' title="Click to Edit Profile Information">
+            <i class="fas fa-edit"></i>
+            Edit Profile
+        </div>
+        {% if user.username %}
+        {% else %}
+            <div class="profileAlert">
+                <i style="font-style:normal;font-size:large;display:block;">&#9760; You are not Logged In.</i>
+                So, all your changes will be saved in Cache Memory 
+                which shall be deleted if you change/reinstall browser or, clear Cache.
+                If you accept, You can Continue and Edit then Save your Local Anynomous Profile.                
+            </div>
+        {% endif %}
+        <div>
+            <i class='fas fa-user-tie userProfileImage'></i>
+            <i class="fas fa-edit profileImageEditIcon" title="Click to Upload Profile Image"></i>
+        </div>
+        {{user.username}} &nbsp;| User ID  : {{user.id}}
+        <hr class='profileElementSeparator'>
+        <p class='profileTitle'> User Account </p>
+        <div class='profileEditIcon' title="Click to Edit User Account Information">
+            <i class="fas fa-edit"></i>
+            Edit User Account
+        </div>
+        <div class='profileElement'>
+            <label for="profileUsername" class="profileLabel"> Username </label>
+            <input type="text" class='profileInput' name="profileUsername" id="profileUsername" value="{{user.username}}" readonly>
+        </div> 
+        <div class='profileElement'>
+            <label for="profileEmail" class="profileLabel"> Email Address </label>
+            <input type="email" class='profileInput' id="profileEmail" name="profileEmail" value="{{user.email}}" readonly>
+            &nbsp;
+            {% if user.emailConfirmed %}
+            Verified &#9989;
+            {% else %}
+            Not Verified &#10060; <button class='verifyButton'> Verify </button>
+            {% endif %}
+        </div> 
+        <div class='profileElement'>
+            <label for="profileNumber" class="profileLabel"> Phone Number </label>
+            <input type="text" class='profileInput' id="profileNumber" name="profileNumber" value="{{user.phone}}" readonly>
+            &nbsp;
+            {% if user.phoneConfirmed %}
+            Verified &#9989;
+            {% else %}
+            Not Verified &#10060; <button class='verifyButton'> Verify </button>
+            {% endif %}
+        </div> 
+        <div class='profileElementInfo'>
+            <label for="axisPremium" class="profileLabel"> Axis Premium Subscription </label>
+            <input type="text" class='profileInputInfo' name="axisPremium" 
+                value="No Axis Premium || Get Premium &#128737;" 
+                readonly>
+        </div> 
+        <div class='profileElement2'>
+            <label for="dateJoined" class="profileLabel"> Date Joined </label>
+            <input type="text" class='profileInputInfo' name="dateJoined" value="{{user.date_joined}}" readonly>
+        </div> 
+
+        <hr class='profileElementSeparator'>
+        <p class='profileTitle'> User Information </p>
+        <div class='profileEditIcon' title="Click to Edit User Information">
+            <i class="fas fa-edit"></i>
+            Edit User Info
+        </div>
+        <div class='profileElement'>
+            <label for="profileName" class="profileLabel"> Name </label>
+            <input type="text" class='profileInput' id="profileFirstName" name="profileName" value="{{user.first_name}}" placeholder="First Name"readonly>
+            <input type="text" class='profileInput' id="profileLastName" name="profileName" value="{{user.last_name}}" placeholder="Last Name" readonly>
+        </div>
+        <div class='profileElement'>
+            <label for="profileGender" class="profileLabel"> Gender </label>
+            <input type="text" class='profileInput' id="profileGender" name="profileGender" value="{{user.gender}}" readonly>
+        </div> 
+        <div class='profileElement'>
+            <label for="profileCountry" class="profileLabel"> Country </label>
+            <input type="text" class='profileInput' id="profileCountry" name="profileCountry" value="{{user.country}}" readonly>    
+        </div> 
+        <div class='profileElement2'>
+            <label for="profileState" class="profileLabel"> State </label>
+            <input type="text" class='profileInput' id="profileState" name="profileState" value="{{user.state}}" readonly>
+        </div> 
+        <div class='profileElement'>
+            <label for="profileCity" class="profileLabel"> City </label>
+            <input type="text" class='profileInput' id="profileCity" name="profileCity" value="{{user.city}}" readonly>
+        </div> 
+        <div class='profileElement2'>
+            <label for="profileArea" class="profileLabel"> Area </label>
+            <input type="text" class='profileInput' id="profileArea" name="profileArea" value="{{user.area}}" readonly>
+        </div> 
+        <div class='profileElement'>
+            <label for="profileLastLogin" class="profileLabel"> Last Login </label>
+            <input type="text" class='profileInput' name="profileLastLogin" value="{{user.last_login}}" readonly>
+        </div> 
+        <div class='profileElement'>
+            <label for="profileActiveStatus" class="profileLabel">  Active Status </label>
+            <input type="text" class='profileInput' name="profileActiveStatus" value="{{user.active}}" readonly>
+        </div>
+
+        <hr class='profileElementSeparator'>
+        <p class='profileTitle'> User Awards </p>
+        <div class='profileElement'>
+            <label for="profileActiveStatus" class="profileLabel"> User Awards </label>
+            <input type="text" class='profileInput' name="profileActiveStatus" value="{{user.username}}" readonly>
+        </div>
+    </div>
+        
+{% endblock %}

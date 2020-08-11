@@ -4,7 +4,7 @@ from django.contrib.auth import login,logout
 from django.shortcuts import render, redirect
 #from django.template import loader
 from .forms import RegisterUser,LoginUser
-from .models import User
+from .models import User,Awards
 
 def login_request(request):
     #template = loader.get_template('axisUsers/login.html')
@@ -48,6 +48,11 @@ def register(response):
     else:
         form = RegisterUser()
     return render(response,'axisUsers/register.html',{"form":form})
+
+def viewProfile(response):
+    #model = User.objects.all()
+    context = {'model':'model','app_name':"axisUsers",'noSettingSidebar':True}
+    return render(response,'axisUsers/profile.html',context)
 
 def terms(request) :
     #template = loader.get_template('axisUsers/terms.html')

@@ -88,6 +88,19 @@
           </a>
       </div>
     </div>
+    {%if noSettingSidebar%}
+      <div class="redirectBar" title="Go Back To Where You Came From">
+        GO Back
+      </div>
+    {% endif %}
+    
+    <center style="color:white;">
+      {%if app_name%}
+        {{app_name}}
+      {%else%}
+        NONE
+      {%endif%}
+    </center>
     <div class="overlapContentPage" id="overlapContentPage" style="display:none;">
       <button type="button"name="uploadPostFormCloseButton"class="uploadPostFormCloseButton"id="uploadPostFormCloseButton"> Close </button>
     </div>
@@ -102,12 +115,16 @@
         {% block content %} {% endblock content %}
       </main>
 
-      <div class="settingSidebar">
-        <div class="sticky">
-        {% include "axisCore/settingSidebar.html" %}
-        {% block customSidebar %} {% endblock customSidebar %}
+      {%if noSettingSidebar%}
+      {% else %}
+        <div class="settingSidebar">
+          <div class="sticky">
+          {% include "axisCore/settingSidebar.html" %}
+          {% block customSidebar %} {% endblock customSidebar %}
+          </div>
         </div>
-      </div>
+      {% endif %}
+
      </div>
 
    <footer>

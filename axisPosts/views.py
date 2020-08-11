@@ -12,7 +12,8 @@ def postView(request):
     postPG = Paginator(model, 10)
     firstPage = postPG.get_page(1)
     #pageRange = postPG.page_range
-    context = {'post_list': firstPage,'page_n':1}
+    app = 'axisPosts'
+    context = {'post_list': firstPage,'page_n':1,'app_name':app}
 
     if request.method == 'POST':
         page_n = int(request.POST.get('page_n', None))

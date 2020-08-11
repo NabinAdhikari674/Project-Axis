@@ -6,6 +6,26 @@
   padding-right:auto;
   
 }
+.redirectBar{
+  position: sticky;
+  float: right;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  width: 6vw;
+  height: 2.5em;
+  margin-top: -3em;
+  top:4em;
+  border-radius: 8%;
+  color: var(--mainColor);
+  background-color: var(--cardBG);
+  border: 1px solid var(--borderColor);
+}
+.redirectBar:hover{
+  text-decoration: none; 
+  background-color: var(--mainBG);
+  color:var(--white);
+}
 .sidebarDiv{
   text-align: left;
   border-radius: 8px;

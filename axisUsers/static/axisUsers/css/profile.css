@@ -1,0 +1,126 @@
+.profileDiv{
+    width: 65vw;
+    height: auto;
+    margin-top: 2em;
+    padding: 1em;
+    border-radius: 1%;
+    color: var(--mainColor);
+    background-color: var(--cardBG);
+    border: 1px solid var(--borderColor);
+}
+.userProfileImage{
+    font-size: 5em;
+    padding:0.1em;
+    border-radius: 8px;
+    border: 1px solid var(--borderColor);
+}
+.profileImageEditIcon{
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 50%;
+    padding:0.5em;
+    margin-left: -1.5em;
+    background-color: var(--cardBG);
+    border: 1px solid var(--borderColor);
+}
+.profileEditIcon{
+    font-size: 1.2em;
+    cursor: pointer;
+    float: right;
+    font-size: 1em;
+    border-radius: 5%;
+    padding: 0.3em;
+    padding-right: 0.4em;
+    padding-left: 0.4em;
+    background-color: var(--cardBG);
+    border: 1px solid var(--borderColor);
+}
+.profileEditIcon:hover{
+    background-color: var(--mainBG);
+    color:var(--white);
+}
+.profileAlert{
+    float: right;
+    width:20vw;
+    height:10.5em;
+    overflow-y: scroll;
+    font-size:0.8em;
+    margin-top:-0.5em;
+    margin-right: 20%;
+    padding:0.5em;
+    border-radius: 2%;
+    background-color: var(--mainBG);
+    color:var(--white);
+    border: 1px solid var(--red);
+
+}
+.profileTitle{
+    padding:0.8em;
+    padding-bottom:0.2em;
+    margin-bottom: 0;
+    font-size: small;
+    color: var(--white) ;
+}
+.profileElement{
+    width: 100%;
+    padding:0.5em;
+    padding-left:1.5em;
+}
+.profileElement2{
+    width: auto;
+    padding:0.5em;
+    padding-left:1.5em;
+    margin-top: -4.48em;
+    margin-left: 35%;
+}
+.profileElementInfo{
+    width: 100%;
+    padding:0.5em;
+    padding-left:1.5em;
+}
+.profileLabel{
+    display: block;
+    margin-bottom: 0px;
+    font-weight: 500;
+}
+.profileLabel2{
+    margin-bottom: 0px;
+    font-weight: 500;
+}
+.profileInput{
+    width: 35%;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    text-align: center;
+    font-style: normal;
+    border: 1px solid var(--borderColor);
+    background-color: var(--inputBG);
+}
+.profileInputInfo{
+    width: 35%;
+    padding-top: 0.1em;
+    padding-bottom: 0.2em;
+    margin-top:0;
+    text-align: center;
+    font-style: normal;
+    border: 1px solid var(--borderColor);
+    background-color: var(--inputBG);
+}
+.profileInputInfo:focus{
+    border: 0px solid var(--borderColor);
+    background-color: var(--inputBG);
+}
+.verifyButton{
+    border-radius: 5%;
+    border: 1px solid var(--borderColor);
+    background-color: var(--inputBG);
+    color: var(--mainColor);
+}
+.verifyButton:hover{
+    background-color: var(--mainBG);
+    color: var(--white);
+}
+.profileElementSeparator{
+    margin-bottom: 0;
+    background-color: var(--borderColor);
+}
