@@ -15,7 +15,7 @@
     border: 1px solid var(--borderColor);
 }
 .profileImageEditIcon{
-    font-size: 1.2em;
+    font-size: 1.1em;
     cursor: pointer;
     border-radius: 50%;
     padding:0.5em;
@@ -23,21 +23,32 @@
     background-color: var(--cardBG);
     border: 1px solid var(--borderColor);
 }
-.profileEditIcon{
-    font-size: 1.2em;
+.profileEditIconDiv{
+    float: right; 
+    text-align: center;
+}
+.profileEditIcon{  
     cursor: pointer;
-    float: right;
+    width: auto;
+    display: inline-block;
     font-size: 1em;
     border-radius: 5%;
     padding: 0.3em;
     padding-right: 0.4em;
     padding-left: 0.4em;
+    margin-bottom: 0.5em;
     background-color: var(--cardBG);
     border: 1px solid var(--borderColor);
+    color: var(--mainColor);
 }
 .profileEditIcon:hover{
     background-color: var(--mainBG);
     color:var(--white);
+}
+.profileChangesConfirmDiv{
+    margin-top: 0.1em;
+    display: none;
+    transition: ease-in-out 0.5s;
 }
 .profileAlert{
     float: right;
@@ -53,6 +64,9 @@
     color:var(--white);
     border: 1px solid var(--red);
 
+}
+.profileAlert::-webkit-scrollbar-thumb {
+    background-color: var(--mainBG);
 }
 .profileTitle{
     padding:0.8em;
@@ -123,4 +137,12 @@
 .profileElementSeparator{
     margin-bottom: 0;
     background-color: var(--borderColor);
+}
+/*Disabling Arrows in Number Input*/
+.profileInput::-webkit-outer-spin-button,
+.profileInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.profileInput[type=number] {
+  -moz-appearance: textfield;
 }

@@ -2,6 +2,8 @@
 {% block stylesheet %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'axisUsers/css/profile.css' %}">
+    <script type="text/javascript" src="{% static 'axisUsers/js/profile.js'%}"></script>
+
 {% endblock %}
 {% block javascript %}
 
@@ -9,9 +11,20 @@
 
 {% block content %}
     <div class="profileDiv" id="profileDiv">
-        <div class='profileEditIcon' title="Click to Edit Profile Information">
-            <i class="fas fa-edit"></i>
-            Edit Profile
+        <form id="userProfileHTMLForm"onSubmit="return false;">
+        <div class="profileEditIconDiv">
+            <div class='profileEditIcon' id="profileEditButton" title="Click to Edit Profile Information">
+                <i class="fas fa-edit"></i>
+                Edit Profile
+            </div>
+            <div class="profileChangesConfirmDiv" id="profileConfirmDiv">
+                <div class='profileEditIcon' id="profileCancelButton" title="Click to Cancel">
+                    Cancel
+                </div>
+                <button class='profileEditIcon' id="profileSaveButton" type="submit" title="Click to Save Changes">
+                    Save Changes
+                </button>
+            </div>
         </div>
         {% if user.username %}
         {% else %}
@@ -29,23 +42,36 @@
         {{user.username}} &nbsp;| User ID  : {{user.id}}
         <hr class='profileElementSeparator'>
         <p class='profileTitle'> User Account </p>
-        <div class='profileEditIcon' title="Click to Edit User Account Information">
-            <i class="fas fa-edit"></i>
-            Edit User Account
+        <div class="profileEditIconDiv">
+            <div class='profileEditIcon' id="profileUserAccEditButton" title="Click to Edit Profile Information">
+                <i class="fas fa-edit"></i>
+                Edit User Account
+            </div>
+            <div class="profileChangesConfirmDiv" id="profileUserAccConfirmDiv">
+                <div class='profileEditIcon' id="profileUserAccCancelButton" title="Click to Cancel">
+                    Cancel
+                </div>
+                <div class='profileEditIcon' id="profileSaveButton" title="Click to Save Changes">
+                    Save Changes
+                </div>
+            </div>
         </div>
+        
         <div class='profileElement'>
             <label for="profileUsername" class="profileLabel"> Username </label>
-            <input type="text" class='profileInput' name="profileUsername" id="profileUsername" value="{{user.username}}" readonly>
+            <input type="text" class='profileInput' name="profileUsername" id="profileUsername" value="{{user.username}}" readonly required>
+            <span class="profileErrors" id='usernameError'></span>
         </div> 
         <div class='profileElement'>
             <label for="profileEmail" class="profileLabel"> Email Address </label>
-            <input type="email" class='profileInput' id="profileEmail" name="profileEmail" value="{{user.email}}" readonly>
+            <input type="email" class='profileInput' id="profileEmail" name="profileEmail" value="{{user.email}}" readonly required>
             &nbsp;
             {% if user.emailConfirmed %}
             Verified &#9989;
             {% else %}
             Not Verified &#10060; <button class='verifyButton'> Verify </button>
             {% endif %}
+            <span class="profileErrors" id='emailError'></span>
         </div> 
         <div class='profileElement'>
             <label for="profileNumber" class="profileLabel"> Phone Number </label>
@@ -56,48 +82,68 @@
             {% else %}
             Not Verified &#10060; <button class='verifyButton'> Verify </button>
             {% endif %}
+            <span class="profileErrors" id='numberError'></span>
         </div> 
         <div class='profileElementInfo'>
             <label for="axisPremium" class="profileLabel"> Axis Premium Subscription </label>
             <input type="text" class='profileInputInfo' name="axisPremium" 
+                style="font-size: 0.9em;"
                 value="No Axis Premium || Get Premium &#128737;" 
                 readonly>
+            <span class="profileErrors" id='axisPremiumError'></span>
         </div> 
-        <div class='profileElement2'>
+        <div class='profileElementInfo'>
             <label for="dateJoined" class="profileLabel"> Date Joined </label>
             <input type="text" class='profileInputInfo' name="dateJoined" value="{{user.date_joined}}" readonly>
         </div> 
 
         <hr class='profileElementSeparator'>
         <p class='profileTitle'> User Information </p>
-        <div class='profileEditIcon' title="Click to Edit User Information">
-            <i class="fas fa-edit"></i>
-            Edit User Info
+        <div class="profileEditIconDiv">
+            <div class='profileEditIcon' id="profileUserInfoEditButton" title="Click to Edit Profile Information">
+                <i class="fas fa-edit"></i>
+                Edit User Info
+            </div>
+            <div class="profileChangesConfirmDiv" id="profileUserInfoConfirmDiv">
+                <div class='profileEditIcon' id="profileUserInfoCancelButton" title="Click to Cancel">
+                    Cancel
+                </div>
+                <div class='profileEditIcon' id="profileSaveButton" title="Click to Save Changes">
+                    Save Changes
+                </div>
+            </div>
         </div>
         <div class='profileElement'>
             <label for="profileName" class="profileLabel"> Name </label>
             <input type="text" class='profileInput' id="profileFirstName" name="profileName" value="{{user.first_name}}" placeholder="First Name"readonly>
             <input type="text" class='profileInput' id="profileLastName" name="profileName" value="{{user.last_name}}" placeholder="Last Name" readonly>
+            <span class="profileErrors" id='nameError'></span>
         </div>
         <div class='profileElement'>
             <label for="profileGender" class="profileLabel"> Gender </label>
             <input type="text" class='profileInput' id="profileGender" name="profileGender" value="{{user.gender}}" readonly>
+            <i>ML : Male &nbsp; FM : Female &nbsp; O : Others</i>
+            <span class="profileErrors" id='genderError'></span>
         </div> 
         <div class='profileElement'>
             <label for="profileCountry" class="profileLabel"> Country </label>
-            <input type="text" class='profileInput' id="profileCountry" name="profileCountry" value="{{user.country}}" readonly>    
+            <input type="text" class='profileInput' id="profileCountry" name="profileCountry" value="{{user.country}}" readonly required>   
+            <span class="profileErrors" id='countryError'></span> 
         </div> 
         <div class='profileElement2'>
             <label for="profileState" class="profileLabel"> State </label>
             <input type="text" class='profileInput' id="profileState" name="profileState" value="{{user.state}}" readonly>
+            <span class="profileErrors" id='stateError'></span>
         </div> 
         <div class='profileElement'>
             <label for="profileCity" class="profileLabel"> City </label>
             <input type="text" class='profileInput' id="profileCity" name="profileCity" value="{{user.city}}" readonly>
+            <span class="profileErrors" id='cityError'></span>
         </div> 
         <div class='profileElement2'>
             <label for="profileArea" class="profileLabel"> Area </label>
             <input type="text" class='profileInput' id="profileArea" name="profileArea" value="{{user.area}}" readonly>
+            <span class="profileErrors" id='areaError'></span>
         </div> 
         <div class='profileElement'>
             <label for="profileLastLogin" class="profileLabel"> Last Login </label>
@@ -114,6 +160,70 @@
             <label for="profileActiveStatus" class="profileLabel"> User Awards </label>
             <input type="text" class='profileInput' name="profileActiveStatus" value="{{user.username}}" readonly>
         </div>
+        </form>
     </div>
-        
+     <script>
+         $(document).ready(function(){  
+            $(document).on('click','#profileSaveButton',function(){
+                var form = document.querySelector('#userProfileHTMLForm');
+                if (!form.checkValidity()) {} 
+                else {
+                    setAttributeToInputReadOnly(true);
+                    $("#profileSaveButton").html("Saving Profile");
+                    var userProfileForm = new FormData();
+                    userProfileForm.append('username', $('#profileUsername').val());
+                    userProfileForm.append('email', $('#profileEmail').val());
+                    userProfileForm.append('phone', $('#profileNumber').val());
+                    userProfileForm.append('first_name', $('#profileFirstName').val());
+                    userProfileForm.append('last_name', $('#profileLastName').val());
+                    userProfileForm.append('gender', $('#profileGender').val());
+                    userProfileForm.append('country', $('#profileCountry').val());
+                    userProfileForm.append('state', $('#profileState').val());
+                    userProfileForm.append('city', $('#profileCity').val());
+                    userProfileForm.append('area', $('#profileArea').val());
+                    $.ajax({
+                        type:'POST',
+                        url:"{% url 'axisUsers:updateUserProfile' %}",
+                        data: userProfileForm,
+                        processData: false,
+                        contentType: false,
+                        success:function(response){
+                            console.log(response);
+                            $("#profileDiv").append(response);
+                            if (response.Profile=='UPDATED'){
+                                $("#profileSaveButton").html("Profile Saved");
+                                alert("Your Profile Was Sucessfully Updated !!");
+                                document.getElementById('profileConfirmDiv').style.display='none';
+                                $("#profileSaveButton").html("Save Changes");
+                            }
+                            if (response.Profile=='ComingSoon'){
+                                $("#profileSaveButton").html("Save Changes");
+                                alert("Profile For Anonymous User Coming Soon...");
+                                document.getElementById('profileConfirmDiv').style.display='none';
+                            }
+                            var returnKeys = Object.keys(response)
+                            var splitKey = returnKeys[0].split('-');
+                            if (splitKey[0]=="Error"){
+                                setAttributeToInputReadOnly(false);
+                                $("#profileSaveButton").html("Save Changes");
+                                $("#"+splitKey[1]+"Error").html(
+                                    "<br><li>"+Object.values(response)+"</li>");
+                                if(splitKey[1]=='Form'){
+                                    var errorName = Object.keys(response["Error-Form"])[0];
+                                    $("#"+errorName+"Error").html(
+                                    "<br><li>"+response["Error-Form"][errorName]+"</li>");
+                                }                  
+                            }
+                        },
+                        error: function(data) {
+                            alert("Something Went Wrong. Try Saving Again !!");
+                            $("#profileSaveButton").html("Save Changes");
+                            setAttributeToInputReadOnly(false);
+                        }
+                    });
+                }
+                
+            });
+         });
+     </script>   
 {% endblock %}

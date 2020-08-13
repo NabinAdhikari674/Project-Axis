@@ -26,8 +26,10 @@
   padding:1em;
   padding-top: 8px;
   padding-bottom: 5px;
-  border: 1px solid #353738;
   border-radius: 8px;
+  border: 1px solid var(--borderColor);
+  background-color: var(--cardBG);
+  color: var(--mainColor);
 }
 .postFeedTitle
 {
@@ -64,6 +66,10 @@
   cursor: pointer;
   border: none;
   outline:none;
+  color:var(--grey);
+  border-radius: 8%;
+  border: 1px solid var(--borderColor);
+  background-color: var(--mainBG);
 
 }
 .postFeedViewButton
@@ -75,12 +81,15 @@
   border-width: 1px;
   cursor: pointer;
   float: right;
+  background-color: var(--mainButtonColor);
+  color: var(--black);
 }
-/*
-.postFeedReactUp:hover {  }
-.postFeedReactDown:hover {  }
-.postFeedView-Button:hover {  }
-*/
+.postFeedReactUp:hover { color:var(--mainColor); }
+.postFeedReactDown:hover {  color: var(--mainColor); }
+.postFeedViewButton:hover { 
+  background: var(--mainButtonColorHover);
+  color: var(--black);
+}
 .postUpd
 {
   margin-bottom: 0px;
@@ -92,9 +101,11 @@
   margin-top:0px;
   padding:10px;
   text-align: center;
-  width:100%;
+  width:10em;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 2%;
+  background: var(--cardBG);
 }
 .loadMoreButton, .loadComplete
 {
@@ -105,8 +116,11 @@
   line-height: 15px;
   cursor: pointer;
   transition: 0.3s;
+  color: var(--mainButtonColor)
 }
-/*
-.loadMoreButton:hover { }
-.loadComplete:hover { }
-*/
+.loadMoreButton:hover {
+  color: var(--mainColor);
+}
+.loadComplete:hover{
+  color: var(--grey);
+}

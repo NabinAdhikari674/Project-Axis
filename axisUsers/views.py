@@ -2,8 +2,11 @@ from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth import login,logout
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
+import json
+from django.core import serializers
 #from django.template import loader
-from .forms import RegisterUser,LoginUser
+from .forms import RegisterUser,LoginUser,userProfile
 from .models import User,Awards
 
 def login_request(request):
@@ -59,11 +62,76 @@ def terms(request) :
     context = {'terms':'termsAndConditions'}
     return render(request,'axisUsers/terms.html',context)
 
+def updateUserProfile(response) :
+    if response.method == "POST":
+        form = userProfile(response.POST)
+        if form.is_valid():
+            userDetails = User.objects.get(id=response.user.id)
+            profileUsername = form.cleaned_data['username']
+            profileEmail = form.cleaned_data['email']
+            profilePhone = form.cleaned_data['phone']
+            if profileUsername != getattr(userDetails, 'username'):
+                if (uniqueUsernameValidation(profileUsername)):
+                    userDetails.username = profileUsername
+                else :
+                    return JsonResponse({'Error-username':'That Username Is Already Taken'})
+            if profileEmail != getattr(userDetails, 'email'):
+                if (uniqueEmailValidation(profileEmail)):
+                    userDetails.email = profileEmail
+                    userDetails.emailConfirmed = False
+                else :
+                    return JsonResponse({'Error-email':'That Email Already Has An Account in Axis'})
+            if profilePhone != getattr(userDetails, 'phone'):
+                if (uniqueEmailValidation(profileEmail)):
+                    userDetails.phone = profilePhone
+                    userDetails.phoneConfirmed = False
+                else :
+                    return JsonResponse({'Error-number':'That Number Already Has An Account in Axis'})
+            userDetails.first_name = form.cleaned_data['first_name']
+            userDetails.last_name = form.cleaned_data["last_name"]
+            userDetails.gender = form.cleaned_data["gender"]
+            userDetails.country = form.cleaned_data["country"]
+            userDetails.state = form.cleaned_data["state"]
+            userDetails.city = form.cleaned_data["city"]
+            userDetails.area = form.cleaned_data["area"]
+            userDetails.save()      
+            #data = serializers.serialize('json', [ user_details, ])
+            return JsonResponse({'Profile':'UPDATED'})
+        else:
+            return JsonResponse({'Error-Form':form.errors})
+
+    else:
+        return JsonResponse({'Error-POST':'POST Request Not Valid'})
+
+def uniqueUsernameValidation(request):
+    if (User.objects.filter(username__iexact=request).exists()):
+        return False
+    else:
+        return True
+def uniqueEmailValidation(request):
+    if (User.objects.filter(email__iexact=request).exists()):
+        return False
+    else:
+        return True
+def uniqueNumberValidation(request):
+    if (User.objects.filter(number__iexact=request).exists()):
+        return False
+    else:
+        return True
+
 '''
 def validate_username(request):
-    username = request.GET.get('username', None)
+    username = request.POST.get('username', None)
     data = {
         'is_taken': User.objects.filter(username__iexact=username).exists()
+    }
+    if data['is_taken']:
+        data['error_message'] = 'A user with this username already exists.'
+    return JsonResponse(data)
+def validate_email(request):
+    email = request.POST.get('email', None)
+    data = {
+        'is_taken': User.objects.filter(email__iexact=email).exists()
     }
     if data['is_taken']:
         data['error_message'] = 'A user with this username already exists.'

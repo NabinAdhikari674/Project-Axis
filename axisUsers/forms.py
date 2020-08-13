@@ -32,7 +32,7 @@ class RegisterUser(forms.ModelForm):
 
     class Meta:
     	model = User
-    	fields = ["first_name","last_name","email","username","password","gender","country"]
+    	fields = ["first_name","last_name","email","username","password","gender","country","city","state","area"]
 
 class LoginUser(AuthenticationForm):
     username = forms.CharField(label='username',required=True,
@@ -44,3 +44,31 @@ class LoginUser(AuthenticationForm):
     class Meta:
         model = User
         fields = ["username","password"]
+
+class userProfile(forms.Form):
+    username = forms.CharField(label='username',required=True,
+                                help_text='Your Username for Axis',
+                                widget=forms.TextInput(attrs={'placeholder': 'Username'}))
+    email = forms.EmailField(label='Email',required=True,
+                                help_text='Your Email for Axis',
+                                widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
+    phone = forms.IntegerField(label='Phone',required=False,
+                                widget=forms.NumberInput(attrs={'placeholder': 'Phone Number'}))
+    genderChoices = [('ML', 'Male'),('FM', 'Female'),('O', 'Other')]
+    gender = forms.ChoiceField (label='Gender',required=False,
+                                widget=forms.RadioSelect(attrs={'title': 'Gender'}),choices=genderChoices)
+    first_name = forms.CharField(label='FirstName',max_length=20,required=False,
+                                widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
+    last_name = forms.CharField(label='LastName',max_length=20,required=False,
+                                widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
+    country = forms.CharField(label='Country',max_length=20,required=True,
+                                widget=forms.TextInput(attrs={'placeholder': 'Country'}))
+    state = forms.CharField(label='State',max_length=20,required=False,
+                                widget=forms.TextInput(attrs={'placeholder': 'State (If Applicable)'}))
+    city = forms.CharField(label='City',max_length=20,required=False,
+                                widget=forms.TextInput(attrs={'placeholder': 'City'}))
+    area = forms.CharField(label='Area',max_length=20,required=False,
+                                widget=forms.TextInput(attrs={'placeholder': 'Area (Local Area Name)'}))
+
+    class Meta:
+        fields = ["first_name","last_name","email","username","gender","country","city","state","area"]
