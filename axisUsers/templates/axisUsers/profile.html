@@ -75,7 +75,7 @@
         </div> 
         <div class='profileElement'>
             <label for="profileNumber" class="profileLabel"> Phone Number </label>
-            <input type="text" class='profileInput' id="profileNumber" name="profileNumber" value="{{user.phone}}" readonly>
+            <input type="number" class='profileInput' id="profileNumber" name="profileNumber" value="null" readonly>
             &nbsp;
             {% if user.phoneConfirmed %}
             Verified &#9989;

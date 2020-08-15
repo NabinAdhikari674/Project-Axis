@@ -82,7 +82,7 @@ def updateUserProfile(response) :
                 else :
                     return JsonResponse({'Error-email':'That Email Already Has An Account in Axis'})
             if profilePhone != getattr(userDetails, 'phone'):
-                if (uniqueEmailValidation(profileEmail)):
+                if (uniqueNumberValidation(profileEmail)):
                     userDetails.phone = profilePhone
                     userDetails.phoneConfirmed = False
                 else :
@@ -114,7 +114,7 @@ def uniqueEmailValidation(request):
     else:
         return True
 def uniqueNumberValidation(request):
-    if (User.objects.filter(number__iexact=request).exists()):
+    if (User.objects.filter(phone__iexact=request).exists()):
         return False
     else:
         return True
