@@ -16,7 +16,7 @@ class User(AbstractUser):
     area = models.CharField(max_length=20,null=True,blank=True)
 
 class axisAwards(models.Model):
-    awardName = models.CharField(max_length=20,unique=True)
+    awardName = models.CharField(max_length=20,unique=True,primary_key=True)
     awardType = models.IntegerField(default=0)
     # 0 = OnceInALifeTime , 1 = Incremental,
     awardDesc = models.CharField(max_length=100,null=True)

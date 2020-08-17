@@ -16,7 +16,7 @@ class UserAwardsViewAdmin(admin.ModelAdmin):
     list_filter = ("awardId",'user',"count")
     search_fields = ['awardId', 'count','user']
 class AxisAwardsViewAdmin(admin.ModelAdmin):
-    list_display = ('id', 'awardName','awardType', 'awardDesc')
+    list_display = ('awardName','awardType', 'awardDesc')
     list_filter = ("awardName","awardType")
     search_fields = ['awardName','awardType']
 
