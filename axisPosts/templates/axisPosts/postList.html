@@ -4,6 +4,18 @@
             <div class="postFeedTitle">
                 {{ post.postTitle }}
                 <small>| Id : {{ post.id }}</small>
+                {% if post.category is 0 %}
+                {% elif post.category is 1 %}
+                    <span class="postTag project">Project</span>
+                {% elif post.category is 2 %}
+                    <span class="postTag complaint">Complaint</span>
+                {% elif post.category is 3 %}
+                    <span class="postTag concern">Concern</span>
+                {% elif post.category is 4 %}
+                    <span class="postTag movement">Movement</span>
+                {% elif post.category is 5 %}
+                    <span class="postTag awareness">Awareness</span>
+                {% endif %}
             </div> <hr style="margin:5px;margin-top:3px;">
             <div class="postFeedText">&raquo; {{ post.content }} &laquo;</div>
             <div class="postFeedPopu">

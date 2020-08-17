@@ -7,7 +7,7 @@ import json
 from django.core import serializers
 #from django.template import loader
 from .forms import RegisterUser,LoginUser,userProfile
-from .models import User,Awards
+from .models import User,userAwards
 
 def login_request(request):
     #template = loader.get_template('axisUsers/login.html')

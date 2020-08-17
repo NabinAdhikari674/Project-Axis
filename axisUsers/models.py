@@ -15,14 +15,20 @@ class User(AbstractUser):
     city = models.CharField(max_length=20,null=True,blank=True)
     area = models.CharField(max_length=20,null=True,blank=True)
 
-class Awards(models.Model):
-    awardId = models.CharField(max_length=50)
-    award = models.CharField(max_length=20)
-    count = models.IntegerField(default=0)
+class axisAwards(models.Model):
+    awardName = models.CharField(max_length=20,unique=True)
     awardType = models.IntegerField(default=0)
+    # 0 = OnceInALifeTime , 1 = Incremental,
+    awardDesc = models.CharField(max_length=100,null=True)
+
+class userAwards(models.Model):
+    awardId = models.ForeignKey(axisAwards,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    count = models.IntegerField(default=0)
 
     def __str__(self):
-        return "%s \t %s \t %d" % (self.awardId, self.award, self.count)
+        return "%s \t %s \t %d" % (self.awardId,self.user, self.count)
+
 '''
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

@@ -38,6 +38,22 @@
   margin-top: 0px;
   overflow-x: scroll;
 }
+.postTag{
+  font-size: 12px;
+  margin-left: 0.5em;
+  padding-left: 0.4em;
+  padding-right: 0.4em;
+  border-radius: 0.4em ;
+	border: 1px solid var(--borderColor);
+  color: var(--mainColor);
+}
+
+.concern{ background-color: olivedrab; }
+.awareness{ background-color: rgb(172, 132, 2); }
+.complaint{ background-color: var(--red); }
+.movement{ background-color: rebeccapurple }
+.project{ background-color: var(--mainButtonColorHover); }
+
 .postFeedText
 {
   margin-top:1em;
@@ -101,7 +117,7 @@
   margin-top:0px;
   padding:10px;
   text-align: center;
-  width:10em;
+  width:24em;
   margin-left: auto;
   margin-right: auto;
   border-radius: 2%;
