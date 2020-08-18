@@ -24,8 +24,13 @@
                 <span id="popuMsg-{{ post.id }}"></span>
             </div>
             <form method="post" class="postFeedReact">
-                <button type="button" class="postFeedReactUp" id="postFeedReactUp-{{ post.id }}" >&#9650;Up</button>
-                <button type="button" class="postFeedReactDown" id="postFeedReactDown-{{ post.id }}" >&#9660;Meh!</button>
+                {% if user.is_authenticated %}
+                    <button type="button" class="postFeedReactButton postFeedReactUp" id="postFeedReactUp-{{ post.id }}" >&#9650;Up</button>
+                    <button type="button" class="postFeedReactButton postFeedReactDown" id="postFeedReactDown-{{ post.id }}" >&#9660;Meh!</button>
+                {%else%}
+                    <button type="button" class="postFeedReactButton postFeedNoReact" >&#9650;Up</button>
+                    <button type="button" class="postFeedReactButton postFeedNoReact" >&#9660;Meh!</button>
+                {% endif %}
                 <button type="button" name="viewPost" class="postFeedViewButton" id="postFeedViewButton-{{ post.id }}">View Post</button>
             </form>
             {% for reactions in reaction_list %}

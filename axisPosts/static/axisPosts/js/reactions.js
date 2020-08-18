@@ -1,4 +1,8 @@
 $(document).ready(function(){
+    $(document).on('click','.postFeedNoReact',function(){
+      alert("You have to be Logged In To be able to React On Posts !!");
+
+    });
     $(document).on('click','.postFeedReactUp',function(){
         var ID = $(this).attr('id');
         var postId = ID.substring(ID.lastIndexOf("-") + 1, ID.length);
