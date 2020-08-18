@@ -7,6 +7,7 @@ from django.http import JsonResponse
 from .models import Post,postReactions
 from axisUsers.models import User 
 #from .models import postComments,commentReactions
+from django.contrib.auth.decorators import login_required
 
 
 def postView(request):
@@ -15,7 +16,10 @@ def postView(request):
     firstPage = postPG.get_page(1)
     #pageRange = postPG.page_range
     postIds = [x.id for x in firstPage]
-    postRcs = postReactions.objects.filter(postId__in=postIds,userName=request.user)[:10]
+    if request.user.is_authenticated:
+        postRcs = postReactions.objects.filter(postId__in=postIds,userName=request.user)[:10]
+    else :
+        postRcs =[]
     app = 'axisPosts'
     context = {'post_list': firstPage,'reaction_list':postRcs,'page_n':1,'app_name':app}
 
@@ -24,7 +28,10 @@ def postView(request):
         page_n += 1
         results = postPG.get_page(page_n)
         postIds = [x.id for x in results]
-        postRcs = postReactions.objects.filter(postId__in=postIds,userName=request.user)[:10]
+        if request.user.is_authenticated:
+            postRcs = postReactions.objects.filter(postId__in=postIds,userName=request.user)[:10]
+        else :
+            postRcs =[]
         context = {'post_list': results,'reaction_list':postRcs,'page_n':page_n}
         return render(request, 'axisPosts/postList.html',context) 
 
@@ -34,7 +41,7 @@ def postViewTest1(request):
     post_list = Post.objects.order_by('-popularity')
     context = {'post_list':post_list}
     return render(request, 'axisPosts/post.html', context)
-
+@login_required
 def reactions(request):
     if request.method == 'POST':
         postId = request.POST.get('postId',None)
