@@ -24,10 +24,25 @@
                 <span id="popuMsg-{{ post.id }}"></span>
             </div>
             <form method="post" class="postFeedReact">
-                <button type="button" class="postFeedReactUp" id="postFeedReactUp-{{ post.id }}" value=0 >&#9650;Up</button>
-                <button type="button" class="postFeedReactDown" id="postFeedReactDown-{{ post.id }}" value=0 >&#9660;Meh!</button>
+                <button type="button" class="postFeedReactUp" id="postFeedReactUp-{{ post.id }}" >&#9650;Up</button>
+                <button type="button" class="postFeedReactDown" id="postFeedReactDown-{{ post.id }}" >&#9660;Meh!</button>
                 <button type="button" name="viewPost" class="postFeedViewButton" id="postFeedViewButton-{{ post.id }}">View Post</button>
             </form>
+            {% for reactions in reaction_list %}
+                {% if reactions.postId.id is post.id %}
+                    {% if reactions.reaction is 1 %}
+                        <script>
+                            $('#postFeedReactUp-'+{{post.id}}).css("color", "blue");
+                            $("#popuMsg-"+{{post.id}}).html("+You Upped this !!");
+                        </script>
+                    {% elif reactions.reaction is 2 %}
+                        <script>
+                            $('#postFeedReactDown-'+{{post.id}}).css("color", "#e8807d");
+                            $("#popuMsg-"+{{post.id}}).html("-You thought this was Meh !!");
+                        </script>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
             <div class="post-upd"><small> Updated At : {{ post.updatedOn }}</small></div>
         </div>
     {% endfor %}
@@ -70,5 +85,12 @@
             }
         }) 
     
-    });    
+    });  
+    function getURLS(urlTO)
+    {
+        var URLs = { 
+            reactionURL : "{% url 'axisPosts:reactions' %}", 
+        };
+        return URLs[urlTO];
+    }  
 </script>

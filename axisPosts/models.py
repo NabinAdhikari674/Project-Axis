@@ -1,8 +1,8 @@
 from django.db import models
-from django.utils.text import slugify
+#from django.utils.text import slugify
 from axisUsers.models import User
 from autoslug import AutoSlugField
-import re
+#import re
 
 # Create your models here.
 class Post(models.Model):
@@ -28,28 +28,27 @@ class Post(models.Model):
         return self.postTitle
 
 class postComments(models.Model):
-    postId = models.BigIntegerField()
+    postId =  models.ForeignKey(Post,on_delete= models.CASCADE)
     parentId = models.IntegerField()
     commentAuthor = models.ForeignKey(User,on_delete= models.SET_DEFAULT,default="1")
     comment = models.TextField()
     popularity = models.IntegerField(default=0)
     updatedOn = models.DateTimeField(auto_now=True)
     createdOn = models.DateTimeField(auto_now_add=True)
-    #class Meta:
-    #    ordering = ['popularity']
-    #def __str__(self):
-    #    return self.userName
+    class Meta:
+        ordering = ['-popularity']
 
 class postReactions(models.Model):
-    postId = models.BigIntegerField()
+    postId = models.ForeignKey(Post,on_delete= models.CASCADE)
     userName = models.ForeignKey(User,on_delete= models.CASCADE)
     reaction = models.IntegerField()
 
 class commentReactions(models.Model):
-    commentId = models.IntegerField()
+    commentId = models.ForeignKey(postComments,on_delete=models.CASCADE)
     userName = models.ForeignKey(User,on_delete= models.CASCADE)
     reaction = models.IntegerField()
 
+'''
 def unique_slugify(instance, value, slug_field_name='slug', queryset=None,
                    slug_separator='-'):
     """
@@ -118,3 +117,4 @@ def _slug_strip(value, separator='-'):
             re_sep = re.escape(separator)
         value = re.sub(r'^%s+|%s+$' % (re_sep, re_sep), '', value)
     return value
+'''
