@@ -1,21 +1,29 @@
 
 $(document).ready(function(){
+    $(document).on ('click','searchQueryField',function () {
+       
+  });
+  
+    
+
     $(document).on('click','.searchQueryButton',function(){
         //console.log("Button Pressed : Submit Post");
-        document.getElementById('overlapContentPage').style.display='block';
-        document.getElementById('axisMenu').style.display='none';
-        document.body.style.overflow = "hidden";
-        document.getElementById("axisNavbar").style.top = "0";
-        var fd =  $('#inputSuccess4').val();
-        //console.log("clicked")
+        var fd = new FormData();
+      fd.append('category1', $('#category1').val());
+      fd.append('choosePost', $('#choosePost').val());
+      fd.append('status', $('#status').val());
+        console.log("clicked")
+
+        
+  
           $.ajax({
               type:'GET',
-              url:getBaseURLs('searchURL'),
-              data: {searchQuery:fd},
+              url:'dfaf',
+              data: fd,
               processData: false,
               contentType: false,
               success:function(response){
-                    $(".overlapContentPage").append(response);
+                    $(".axisNavbar").append(response);
 
                 
                },
@@ -26,10 +34,7 @@ $(document).ready(function(){
        });
   
   });
-function searchClicker(){
-    $('.searchQueryButton').click();
-};
-
+  
   $.ajaxSetup({
       beforeSend: function(xhr, settings) {
           if (!csrfSafeMethod(settings.type) && !this.crossDomain) {

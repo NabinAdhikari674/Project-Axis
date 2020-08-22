@@ -162,7 +162,15 @@
             });
         });
     });
-
+    function getBaseURLs(urlTO)
+    {
+        var URLs = { 
+            reactionURL : "{% url 'axisPosts:reactions' %}",
+            searchURL : "{% url 'axisPMS:search' %}",
+            
+        };
+        return URLs[urlTO];
+    }  
    </script>
   </body>
 </html>
