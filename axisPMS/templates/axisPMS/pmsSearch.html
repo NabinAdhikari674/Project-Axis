@@ -1,0 +1,104 @@
+{% if result %}
+    {% for post in result %}
+        <div class='postFeedCard'>
+            <div class="postFeedTitle">
+                {{ post.projectTitle }}
+                <small>| Id : {{ post.id }}</small>
+                {% if post.category is 0 %}
+                {% elif post.category is 1 %}
+                    <span class="postTag project">Project</span>
+                {% elif post.category is 2 %}
+                    <span class="postTag complaint">Complaint</span>
+                {% elif post.category is 3 %}
+                    <span class="postTag concern">Concern</span>
+                {% elif post.category is 4 %}
+                    <span class="postTag movement">Movement</span>
+                {% elif post.category is 5 %}
+                    <span class="postTag awareness">Awareness</span>
+                {% endif %}
+            </div> <hr style="margin:5px;margin-top:3px;">
+            <div class="image">
+            <img src="{{ image.model_pic.url }}">
+            </div>
+            <div class="postFeedText">&raquo; {{ post.content }} &laquo;</div>
+            <div class="postFeedPopu">
+                &#9889;
+                <span id="popuCounter-{{ post.id }}"> {{ post.popularity }}</span>
+                <span id="popuMsg-{{ post.id }}"></span>
+            </div>
+            <form method="post" class="postFeedReact">
+                {% if user.is_authenticated %}
+                    <button type="button" class="postFeedReactButton postFeedReactUp" id="postFeedReactUp-{{ post.id }}" >&#9650;Up</button>
+                    <button type="button" class="postFeedReactButton postFeedReactDown" id="postFeedReactDown-{{ post.id }}" >&#9660;Meh!</button>
+                {%else%}
+                    <button type="button" class="postFeedReactButton postFeedNoReact" >&#9650;Up</button>
+                    <button type="button" class="postFeedReactButton postFeedNoReact" >&#9660;Meh!</button>
+                {% endif %}
+                <button type="button" name="viewPost" class="postFeedViewButton" id="postFeedViewButton-{{ post.id }}">View Post</button>
+            </form>
+            {% for reactions in reaction_list %}
+                {% if reactions.postId.id is post.id %}
+                    {% if reactions.reaction is 1 %}
+                        <script>
+                            $('#postFeedReactUp-'+{{post.id}}).css("color", "blue");
+                            $("#popuMsg-"+{{post.id}}).html("+You Upped this !!");
+                        </script>
+                    {% elif reactions.reaction is 2 %}
+                        <script>
+                            $('#postFeedReactDown-'+{{post.id}}).css("color", "#e8807d");
+                            $("#popuMsg-"+{{post.id}}).html("-You thought this was Meh !!");
+                        </script>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            <div class="post-upd"><small> Updated At : {{ post.updatedOn }}</small></div>
+        </div>
+    {% endfor %}
+    {% if post_list.has_next %}
+        <div class="loadMore" id="loadMoreDiv-{{page_n}}">
+            <span class="loadMoreButton ajaxLoadMore" id='loadMoreButton-{{page_n}}'> Load More </span>
+        </div>
+    {% else %}
+        <div class="loadMore">
+            <span class="loadComplete" title='You Have Read All Posts. Try Reloading for New Posts'>
+                Looks Like You are all Caught Up !! :) 
+            </span>
+        </div>
+    {% endif %}
+{% else %}
+    <div class="loadMore" id="loadCompleteDiv">
+        <span class="loadMoreButton" >There are No Posts Available.</span>
+        <span class="loadComplete" title="No Posts Available">Looks Like There is a Problem !! Try Reloading the Page to Load Posts</span>
+    </div>
+{% endif %}
+
+<!-- JAVASCRIPT -->
+
+<script>
+    $('.ajaxLoadMore').click(function(event){
+        var ID = $(this).attr('id');
+        var pageNumber = ID.substring(ID.lastIndexOf("-") + 1, ID.length);
+        console.log("Ajax Load More Pressed");
+        $.ajax({
+            type: "POST",
+            url: "?page={{ page_obj.next_page_number }}",
+            data : {page_n:pageNumber,csrfmiddlewaretoken: '{{ csrf_token }}'},
+            success: function (resp) {
+                console.log("Posts Retrived !!");
+                $('#loadMoreDiv-'+pageNumber).remove();
+                $('.postFeed').append(resp);
+            },
+            error: function (resp) {
+                console.log("There is an Error : "+resp);
+            }
+        }) 
+    
+    });  
+    function getURLS(urlTO)
+    {
+        var URLs = { 
+            reactionURL : "{% url 'axisPosts:reactions' %}", 
+        };
+        return URLs[urlTO];
+    }  
+</script>

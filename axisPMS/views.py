@@ -4,6 +4,7 @@ from django.shortcuts import render
 from .models import pmsPost
 from axisPosts.models import Post
 import datetime
+from django.db.models import Q
 
 def pmsPostView(request):
     #template = loader.get_template('axisPMS/sort.html')
@@ -23,15 +24,10 @@ def searchPost(request):
             
    
 def pmsSearch(request):
-    pass
-   # if request.method == "GET":
-      #  response_data = {}
-      #  if request.is_ajax():
-      #  fd = request.GET.get('fd')
-       # values = pmsPost.objects.filter(Q(projectTitle__icontains=Lists)|Q(projectTitle__icontains=Lists)|(projectTitle__icontains=Lists ))
-       # return render(request,"axisPMS/pmsSearch.html", {'values': values})
-   # return render(request,"axisPMS/pmsSearch.html", {'values': 'values'})
-
+     if request.method == "GET":
+        searchQuery=request.GET.get('searchQuery',fd)
+        result = City.objects.filter(Q(projectTitle__icontains=fd) | Q(category__icontains=fd)/Q(status__icontains=fd))
+        return render(request,"axisPMS/pmsSearch.html", {'result': result})
 
 
 def sort(request):
@@ -44,4 +40,4 @@ def sort(request):
 
    
                 
-
+  
