@@ -24,6 +24,10 @@
       <span class="error">* {{uploadPostForm.postTitle.errors}}</span>
       </p>
       <br><br>
+      <label for="image">image </label>
+      <input type="file" class="selectimage" id="projectimage"name="image">
+      <span class="error"> {{uploadPostForm.image.errors}}</span>
+      <br>
       <label for="Category">Choose Your Post Category : </label>
       <select name="Category" class='optionSelection' id='category'>
         <option value="0">Regular Post</option>
@@ -100,6 +104,7 @@
         fd.append('startDate', $('#startDate').val());
         fd.append('endDate', $('#endDate').val());
         fd.append('content', $('#newPostContent').val());
+        fd.append('image', $('#projectimage').val());
 
           $.ajax({
               type:'POST',

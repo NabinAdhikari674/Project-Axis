@@ -18,8 +18,8 @@ $(document).ready(function(){
   
           $.ajax({
               type:'GET',
-              url:'dfaf',
-              data: fd,
+              url:getBaseURLs('pmssearchhURL'),
+              data: {fd},
               processData: false,
               contentType: false,
               success:function(response){

@@ -26,6 +26,7 @@ class uploadPostForm(forms.ModelForm):
                                 widget=forms.SelectDateWidget(empty_label=("Choose Year", "Choose Month", "Choose Day")))
     endDate = forms.DateField(label='endDate',required=False,
                                 widget=AdminDateWidget)
+    image=forms.ImageField( required=False)
 
 
     class Meta:
