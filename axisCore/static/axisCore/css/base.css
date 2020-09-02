@@ -123,5 +123,5 @@ body::-webkit-scrollbar {
   right: 0;
   bottom: 1px;
   z-index: 3;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
 }

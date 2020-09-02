@@ -1,0 +1,17 @@
+<div class="commentBox" id="commentBox-{{comment.id}}">
+    <div class="userAvatar"> <i class='fas fa-user-tie' style='font-size:23px;'></i> </div>
+    <div class="commentHead">
+      <span class="commentAuthor"><a href="#">{{ comment.commentAuthor }}</a></span>
+      <span class="userTag">User Tag</span>
+      <small> | Id : {{ comment.id }}</small>
+      {% load tz %}
+      <span class="lastUpdated">Updated At : {{ comment.updatedOn|localtime }}</span>
+      <span class="commentReact">
+        <i class="fa fa-heart commentHeart" id="commentHeart-{{comment.id}}"> Like</i>
+        <i class="fa fa-reply commentReply" id="connemtReply-{{comment.id}}"> Reply</i>
+      </span>
+    </div>
+    <div class="commentContent"> {{ comment.comment }} </div>
+    <small> &#9889; {{ comment.popularity }}</small>
+    <small> Parent Id : {{ comment.parentId }}</small>
+  </div>

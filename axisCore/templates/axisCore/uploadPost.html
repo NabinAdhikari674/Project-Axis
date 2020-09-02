@@ -84,7 +84,7 @@
        </center>
    </form>
 </div>
-<div style="color:white;margin-bottom:2em;">
+<div style="color:white;margin-bottom:2em;" id="infoDiv">
   <p>** Fill in all the Required Fields to Upload Your Post !!</p>
 </div>
 <script>
@@ -103,7 +103,7 @@
 
           $.ajax({
               type:'POST',
-              url:"{% url 'axisCore:uploadPostonDB' %}",
+              url:"{% url 'axisPosts:uploadPostonDB' %}",
               data: fd,
               processData: false,
               contentType: false,

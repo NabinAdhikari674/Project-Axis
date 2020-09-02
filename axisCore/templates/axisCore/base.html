@@ -20,8 +20,9 @@
     <script type="text/javascript" src="{% static 'axisCore/js/base.js'%}"></script>
     <script type="text/javascript" src="{% static 'axisCore/js/uploadPost.js'%}"></script>
     <script type="text/javascript" src="{% static 'axisCore/js/search.js'%}"></script>
-    <script type="text/javascript" src="{% static 'axisUsers/js/profile.js'%}"></script>
     <script type="text/javascript" src="{% static 'axisPosts/js/reactions.js'%}"></script>
+    <script type="text/javascript" src="{% static 'axisPosts/js/postDetail.js'%}"></script>
+    <script type="text/javascript" src="{% static 'axisUsers/js/profile.js'%}"></script>
   </head>
   <body>
     <header>
@@ -147,7 +148,7 @@
           document.getElementById("axisNavbar").style.top = "0";
             $.ajax({
                 type:'POST',
-                url:"{% url 'axisCore:uploadPostFormView' %}",
+                url:"{% url 'axisPosts:uploadPostFormView' %}",
                 data: {},
                 success:function(response){
                   //console.log("Form Received");

@@ -29,7 +29,8 @@ class Post(models.Model):
 
 class postComments(models.Model):
     postId =  models.ForeignKey(Post,on_delete= models.CASCADE)
-    parentId = models.IntegerField()
+    active = models.BooleanField(default=True)
+    parentId = models.ForeignKey('self',related_name='replies',on_delete= models.SET_NULL,null=True, blank=True)
     commentAuthor = models.ForeignKey(User,on_delete= models.SET_DEFAULT,default="1")
     comment = models.TextField()
     popularity = models.IntegerField(default=0)

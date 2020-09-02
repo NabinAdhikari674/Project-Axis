@@ -13,9 +13,15 @@ $(document).ready(function(){
     
     $(document).on('click','.uploadPostFormCloseButton',function(){
        document.getElementById('overlapContentPage').style.display='none';
-       document.getElementById('uploadPostForm').style.display='none';
-       document.getElementById('axisMenu').style.display='block';
        document.body.style.overflow = "scroll";
+       document.getElementById('axisMenu').style.display='block';
+       try{
+           document.getElementById('uploadPostForm').remove();
+           document.getElementById('infoDiv').remove();
+        }
+       catch(err){};
+       try{$('.postDetailView').remove();}
+       catch(err){};    
       });
 });
 

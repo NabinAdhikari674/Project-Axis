@@ -2,13 +2,12 @@ from django.core.paginator import Paginator
 from django.shortcuts import render
 #from django.views import generic
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 #from django.http import HttpResponse
 #from django.template import loader
-from .models import Post,postReactions
-from axisUsers.models import User 
-#from .models import postComments,commentReactions
-from django.contrib.auth.decorators import login_required
-
+from .forms import uploadPostForm
+from .models import Post,postReactions,postComments,commentReactions
+from axisUsers.models import User
 
 def postView(request):
     model = Post.objects.all()
@@ -37,10 +36,46 @@ def postView(request):
 
     return render(request,'axisPosts/post.html',context) 
 
-def postViewTest1(request):
-    post_list = Post.objects.order_by('-popularity')
-    context = {'post_list':post_list}
-    return render(request, 'axisPosts/post.html', context)
+@login_required
+def uploadPostFormView(request):
+    PostForm = uploadPostForm()
+    context = {'uploadPostForm':PostForm}
+    return render(request, 'axisCore/uploadPost.html', context)
+@login_required
+def uploadPostonDB(response):
+    if response.method == "POST":
+        form = uploadPostForm(response.POST)
+        if form.is_valid():
+            form.cleaned_data['postAuthor'] = response.user
+            newPost = form.save(commit=False)
+            newPost.save()
+            return JsonResponse({'Form':"SAVED"})
+        else:
+            return JsonResponse({'Form':"Not Valid"})
+    else:
+        return JsonResponse({'POST':"NOT VALID"})
+    return JsonResponse({'Request':"Invalid Request"})
+
+def postDetailView(request):
+    if request.method == 'GET':
+        postId = request.GET.get('postId',None)
+        post = Post.objects.get(id=postId)
+        if request.user.is_authenticated:
+            try:
+                postRc = postReactions.objects.get(postId=postId,userName=request.user)
+            except:
+                postRc=[]
+        else :
+            postRc =[]
+        try :
+            postCmts = postComments.objects.filter(postId=postId).order_by('-popularity')
+        except exp as Exception:
+            postCmts = []
+            #print(exp)
+        #print("Post Reaaction iS : ",postRc.reaction)
+        context = {'post':post,'reactions':postRc,'comment_feed':postCmts}
+        return render(request, 'axisPosts/postDetail.html', context)
+
 @login_required
 def reactions(request):
     if request.method == 'POST':
@@ -90,4 +125,18 @@ def reactions(request):
                 reactionObj[0].save()
                 return JsonResponse({'Reaction':"Down",'Counter':popuCounter})
 
-   
+@login_required
+def postNewComment(request):
+    if request.method == 'GET':
+        pid = request.GET.get('pid',None)
+        cmt = request.GET.get('cmt',None)
+        cid = request.GET.get('cid',None)
+        if cmt:
+            newCmt = postComments.objects.create(postId=Post(id=pid),parentId=postComments(id=cid),commentAuthor=request.user,comment=cmt)
+            if (newCmt.id):
+                context = {"comment":newCmt}
+                return render(request, 'axisPosts/comment.html',context)
+            else:
+                return JsonResponse({'Comment':"Comment Upload Error"})
+        else :
+            return JsonResponse({'Comment':"Empty Comment Error"})

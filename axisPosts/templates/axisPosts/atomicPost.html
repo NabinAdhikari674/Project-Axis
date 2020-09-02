@@ -1,0 +1,52 @@
+<div class='postFeedCard'>
+    <div class="postFeedTitle">
+        {{ post.postTitle }}
+        <small>| Id : {{ post.id }}</small>
+        {% if post.category is 0 %}
+        {% elif post.category is 1 %}
+            <span class="postTag project">Project</span>
+        {% elif post.category is 2 %}
+            <span class="postTag complaint">Complaint</span>
+        {% elif post.category is 3 %}
+            <span class="postTag concern">Concern</span>
+        {% elif post.category is 4 %}
+            <span class="postTag movement">Movement</span>
+        {% elif post.category is 5 %}
+            <span class="postTag awareness">Awareness</span>
+        {% endif %}
+    </div> <hr style="margin:5px;margin-top:3px;">
+    <div class="postFeedText">&raquo; {{ post.content }} &laquo;</div>
+    <div class="postFeedPopu">
+        &#9889;
+        <span id="popuCounter-{{ post.id }}"> {{ post.popularity }}</span>
+        <span id="popuMsg-{{ post.id }}"></span>
+    </div>
+    <form method="post" class="postFeedReact">
+        {% if user.is_authenticated %}
+            <button type="button" class="postFeedReactButton postFeedReactUp" id="postFeedReactUp-{{ post.id }}" >&#9650;Up</button>
+            <button type="button" class="postFeedReactButton postFeedReactDown" id="postFeedReactDown-{{ post.id }}" >&#9660;Meh!</button>
+        {%else%}
+            <button type="button" class="postFeedReactButton postFeedNoReact" >&#9650;Up</button>
+            <button type="button" class="postFeedReactButton postFeedNoReact" >&#9660;Meh!</button>
+        {% endif %}
+        <button type="button" name="viewPost" class="postFeedViewButton" id="postFeedViewButton-{{ post.id }}">View Post</button>
+    </form>
+    {% for reactions in reaction_list %}
+        {% if reactions.postId.id is post.id %}
+            {% if reactions.reaction is 1 %}
+                <script>
+                    $('#postFeedReactUp-'+{{post.id}}).css("color", "blue");
+                    $("#popuMsg-"+{{post.id}}).html("+You Upped this !!");
+                </script>
+            {% elif reactions.reaction is 2 %}
+                <script>
+                    $('#postFeedReactDown-'+{{post.id}}).css("color", "#e8807d");
+                    $("#popuMsg-"+{{post.id}}).html("-You thought this was Meh !!");
+                </script>
+            {% else %}
+                <script>$("#popuMsg-"+{{post.id}}).html("~ React to this Post &#8628;");</script>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    <div class="post-upd"><small> Updated At : {{ post.updatedOn }}</small></div>
+</div>

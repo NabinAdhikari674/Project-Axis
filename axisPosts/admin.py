@@ -9,7 +9,7 @@ class PostViewAdmin(admin.ModelAdmin):
     #prepopulated_fields = {'postSlug': ('postAuthor','postTitle')}
 
 class CommentViewAdmin(admin.ModelAdmin):
-    list_display = ('id','postId', 'commentAuthor', 'comment','popularity','updatedOn')
+    list_display = ('id','postId', 'parentId','commentAuthor', 'comment','popularity','updatedOn')
     #list_filter = ("axisStatus","createdOn",'updatedOn','category')
     #search_fields = ['postTitle', 'content','postAuthor']
     #prepopulated_fields = {'postSlug': ('postTitle',)}

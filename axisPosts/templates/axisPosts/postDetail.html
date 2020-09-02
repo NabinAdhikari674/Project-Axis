@@ -1,13 +1,103 @@
-{% block content %}
-<div class="container">
-  <div class="row">
-    <div class="col-md-8 card mb-4  mt-3 left  top">
-      <div class="card-body">
-        <h1>{% block title %} {{ object.title }} {% endblock title %}</h1>
-        <p class=" text-muted">{{ post.author }} | {{ post.created_on }}</p>
-        <p class="card-text ">{{ object.content | safe }}</p>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'axisPosts/css/postDetail.css' %}">
+
+{% if post %}
+  <div class="postDetailView">
+    <div class='postDetailCard' id='postDetailCard-{{post.id}}'>
+        <div class="postFeedTitle">
+            {{ post.postTitle }}
+            <small>| Id : {{ post.id }}</small>
+            {% if post.category is 0 %}
+            {% elif post.category is 1 %}
+                <span class="postTag project">Project</span>
+            {% elif post.category is 2 %}
+                <span class="postTag complaint">Complaint</span>
+            {% elif post.category is 3 %}
+                <span class="postTag concern">Concern</span>
+            {% elif post.category is 4 %}
+                <span class="postTag movement">Movement</span>
+            {% elif post.category is 5 %}
+                <span class="postTag awareness">Awareness</span>
+            {% endif %}
+        </div> <hr style="margin:5px;margin-top:3px;">
+        <div class="postFeedText">&raquo; {{ post.content }} &laquo;</div>
+        <div class="postFeedPopu">
+            &#9889;
+            <span id="popuCounter-{{ post.id }}"> {{ post.popularity }}</span>
+            <span id="popuMsg-{{ post.id }}"></span>
+        </div>
+        <form method="post" class="postFeedReact">
+          {% if user.is_authenticated %}
+            <button type="button" class="postFeedReactButton postFeedReactUp" id="postFeedReactUp-{{ post.id }}" >&#9650;Up</button>
+            <button type="button" class="postFeedReactButton postFeedReactDown" id="postFeedReactDown-{{ post.id }}" >&#9660;Meh!</button>
+            <button type="button" class="postFeedReactButton detailedPostComment" id="postFeedComment-{{ post.id }}" >
+              <i class="fas fa-comment-alt" style="font-size:15px;"></i> Comment
+            </button>
+            <button type="button" class="postFeedReactButton detailedPostShare" id="postFeedShare-{{post.id}}" >
+              <i class="fas fa-share-alt-square" style="font-size:17px;"></i> Share
+            </button>
+          {%else%}
+            <button type="button" class="postFeedReactButton postFeedNoReact" >&#9650;Up</button>
+            <button type="button" class="postFeedReactButton postFeedNoReact" >&#9660;Meh!</button>
+          {% endif %}
+         </form>
+        {% if reactions.postId.id is post.id %}
+            {% if reactions.reaction is 1 %}
+                <script>
+                    $('#postFeedReactUp-'+{{post.id}}).css("color", "blue");
+                    $("#popuMsg-"+{{post.id}}).html("+You Upped this !!");
+                </script>
+            {% elif reactions.reaction is 2 %}
+                <script>
+                    $('#postFeedReactDown-'+{{post.id}}).css("color", "#e8807d");
+                    $("#popuMsg-"+{{post.id}}).html("-You thought this was Meh !!");
+                </script>
+            {% endif %}
+        {% endif %}
+        <div class="postUpd"><small> Updated At : {{ post.updatedOn }}</small></div>
+    </div>
+
+    <div class="newCommentPostBox" id="newCommentPostBox">
+      <small>Commenting as : {{user.username}}</small>
+      <span class="closeCommentPostButton" onclick="this.parentElement.style.display='none';"> &times; </span>
+      <form method="post" class="newCommentPostForm" id ="newCommentPostForm-{{post.id}}">
+        <textarea name="newCommentPost" class= "newCommentPost" id ="newCommentPost-{{post.id}}" placeholder=" What are your thoughts ?" required></textarea>
+        <button type="button" class="postNewComment pncP0" id="postNewComment-{{post.id}}" >
+          <i class="fas fa-comment-alt" style="font-size:15px;"></i> Publish
+        </button>
+      </form>
+      <div class="alertUserCmtDiv" style="display:none;">
+        <span class="closeBtnAlert" onclick="this.parentElement.style.display='none';"> &times;</span>
+        <div class="alertUserOnCmt"></div>
       </div>
     </div>
+
+    <div class="commentsFeed" id="commentsFeed-{{post.id}}">
+      {% for comment in comment_feed %}
+        <div class="commentBox" id="commentBox-{{comment.id}}">
+          <div class="userAvatar"> <i class='fas fa-user-tie' style='font-size:23px;'></i> </div>
+          <div class="commentHead">
+            <span class="commentAuthor"><a href="#">{{ comment.commentAuthor }}</a></span>
+            <span class="userTag">User Tag</span>
+            <small> | CId : {{ comment.id }}</small>
+            <span class="lastUpdated">Updated At : {{ comment.updatedOn }}</span>
+            <span class="commentReact">
+              <i class="fa fa-heart commentHeart" id="commentHeart-{{comment.id}}"> Like</i>
+              <i class="fa fa-reply commentReply" id="connemtReply-{{comment.id}}"> Reply</i>
+            </span>
+          </div>
+          <div class="commentContent"> {{ comment.comment }} </div>
+          <small> &#9889; {{ comment.popularity }}</small>
+          <small> Parent Id : {{ comment.parentId }}</small>
+        </div>
+        {% empty %}
+        <div class="noContent"><center> Be First To Comment On this Post !! </center></div>
+      {% endfor %}
+    </div>
+{% else %}
+  <div class="loadMore postDetailView" id="loadCompleteDiv">
+      <span class="loadComplete" title="No Posts Available">Looks Like There is a Problem !! Try Reloading the Page to Load Posts</span>
   </div>
-</div>
-{% endblock content %}
+{% endif %}
+
+<!-- JAVASCRIPT -->
