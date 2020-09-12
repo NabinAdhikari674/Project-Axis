@@ -12,7 +12,7 @@ class Post(models.Model):
     statusChoices = [('0', 'Draft/Not Published'),('1', 'Published')]
     status = models.IntegerField(default=0) #Draft or Published
     content = models.TextField()
-    postimage = models.ImageField(upload_to="images")
+    postImage = models.ImageField(upload_to="images/",null=True, blank=True)
     category = models.IntegerField(default=0) #Post Category:Regular/Complaint/Concern/Movement/Awareness
     axisStatus = models.IntegerField(default=0) # Issue Status : Planning/OnGoing/Ended/Cancelled/Suspended
     postLevel = models.IntegerField(default=0) #Post Type/Level : Gov/Community/Private/Charity/Org

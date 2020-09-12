@@ -147,7 +147,7 @@
           document.body.style.overflow = "hidden";
           document.getElementById("axisNavbar").style.top = "0";
             $.ajax({
-                type:'POST',
+                type:'GET',
                 url:"{% url 'axisPosts:uploadPostFormView' %}",
                 data: {},
                 success:function(response){

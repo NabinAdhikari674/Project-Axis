@@ -38,23 +38,22 @@ def postView(request):
 
 @login_required
 def uploadPostFormView(request):
-    PostForm = uploadPostForm()
-    context = {'uploadPostForm':PostForm}
-    return render(request, 'axisCore/uploadPost.html', context)
+    return render(request, 'axisPosts/uploadPost.html', {'uploadPostForm':uploadPostForm()})
 @login_required
 def uploadPostonDB(response):
     if response.method == "POST":
-        form = uploadPostForm(response.POST)
+        form = uploadPostForm(response.POST,response.FILES)
         if form.is_valid():
             form.cleaned_data['postAuthor'] = response.user
             newPost = form.save(commit=False)
             newPost.save()
             return JsonResponse({'Form':"SAVED"})
         else:
-            return JsonResponse({'Form':"Not Valid"})
+            return JsonResponse({'Error':True,'Errors':form.errors})
     else:
-        return JsonResponse({'POST':"NOT VALID"})
-    return JsonResponse({'Request':"Invalid Request"})
+        form = uploadPostForm()
+    return render(response, 'axisPosts/uploadPost.html',{'uploadPostForm':form})
+    
 
 def postDetailView(request):
     if request.method == 'GET':

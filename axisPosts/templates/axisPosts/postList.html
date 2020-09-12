@@ -18,7 +18,9 @@
                 {% endif %}
             </div> <hr style="margin:5px;margin-top:3px;">
             <div class="image">
-            <img src="{{post.postimage}}"  alt="image of me" height="200" weidth="100">
+            {% if post.postImage %}
+                <img src="{{post.postImage.url}}" alt="image of me" height="200" weidth="100">
+            {% endif %}
             </div>
             <div class="postFeedText">&raquo; {{ post.content }} &laquo;</div>
             <div class="postFeedPopu">
@@ -73,3 +75,34 @@
         <span class="loadComplete" title="No Posts Available">Looks Like There is a Problem !! Try Reloading the Page to Load Posts</span>
     </div>
 {% endif %}
+
+<script>
+    $('.ajaxLoadMore').click(function(event){
+        var ID = $(this).attr('id');
+        var pageNumber = ID.substring(ID.lastIndexOf("-") + 1, ID.length);
+        console.log("Ajax Load More Pressed");
+        $.ajax({
+            type: "POST",
+            url: "?page={{ page_obj.next_page_number }}",
+            data : {page_n:pageNumber,csrfmiddlewaretoken: '{{ csrf_token }}'},
+            success: function (resp) {
+                console.log("Posts Retrived !!");
+                $('#loadMoreDiv-'+pageNumber).remove();
+                $('.postFeed').append(resp);
+            },
+            error: function (resp) {
+                console.log("There is an Error : "+resp);
+            }
+        }) 
+    
+    });  
+    function getPostURLS(urlTO)
+    {
+        var URLs = { 
+            reactionURL : "{% url 'axisPosts:reactions' %}", 
+            postDetailURL : "{% url 'axisPosts:postDetailView' %}",
+            newCommentURL : "{% url 'axisPosts:postNewComment' %}",
+        };
+        return URLs[urlTO];
+    }  
+</script>

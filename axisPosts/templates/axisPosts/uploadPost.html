@@ -1,0 +1,103 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'axisCore/css/uploadPost.css' %}">
+
+<div class="uploadPostForm" id='uploadPostForm'>
+  <h6 class="advancedPostButton"> Advanced Post </h6>
+  <h6>Want to Post Something ?</h6>
+  <hr style="margin-top:0px;margin-bottom:0px;">
+  <form method="POST" enctype="multipart/form-data" class="postForm" id="postForm">
+      {% csrf_token %}
+      <h6 style="padding-top:2em;"><span class="error">*Required Fields</span></h6>
+      {{ uploadPostForm.non_field_errors }}
+      {{ uploadPostForm.source.errors }}
+      {{ uploadPostForm.source }}
+      {% if uploadMessages %}
+        <ul class="messages">
+            {% for message in uploadMessages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+      {% endif %}
+      <p style="text-align:center;margin:0%;">
+      <i class="fas fa-user-tie" style='font-size:18px;'></i> {{ user.username }}
+      {{uploadPostForm.postTitle}}
+      <span class="error">* {{uploadPostForm.postTitle.errors}}</span>
+      </p>
+      <br><br>
+      Add Image : {{uploadPostForm.postImage}}
+      <span class="error"> {{uploadPostForm.postImage.errors}}</span>
+      <br><br>
+      Post Category : {{uploadPostForm.category}}
+      <span class="error"> {{uploadPostForm.category.errors}} </span>
+      <br>
+      <br>
+      Issue Level : {{uploadPostForm.postLevel}}
+      <span class="error"> {{uploadPostForm.postLevel.errors}}</span>
+      <br><br>
+      Issue Status : {{uploadPostForm.axisStatus}}
+      <span class="error"> {{uploadPostForm.axisStatus.errors}}</span>
+      <br><br>
+      Budget : {{uploadPostForm.budget}}
+      <span class="error"> {{uploadPostForm.budget.errors}}</span>
+      <br><br>
+      Start Date : {{uploadPostForm.startDate}}
+      <span class="error"> {{uploadPostForm.startDate.errors}}</span>
+      <br><br>
+      End Date : {{uploadPostForm.endDate}}
+      <span class="error"> {{uploadPostForm.endDate.errors}}</span>
+      <br><br>
+      <div style="width:100%;margin-bottom:0px;">
+        {{uploadPostForm.content}}
+        <div class="advancedPostTab" id="advancedPostTab" style="display:none;">
+          Advanced Post Tab Placement
+        </div>
+        <span class="error">* {{uploadPostForm.content.errors}}</span>
+      </div>
+      <br>
+      <center>
+        <input class="newPostSubmitButton" type="submit" name="submitPost" value="Post">
+       </center>
+   </form>
+</div>
+<div style="color:white;margin-bottom:2em;" id="infoDiv">
+  <p>** Fill in all the Required Fields to Upload Your Post !!</p>
+</div>
+<script>
+  $(document).ready(function(){
+    $('#postForm').submit(function(e){
+      e.preventDefault();
+      $form = $(this)
+      var formData = new FormData(this);
+      $.ajax({
+        type: 'POST',
+        url: "{% url 'axisPosts:uploadPostonDB' %}",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+            if (response.Form=='SAVED'){
+                  alert("Your Post Was Sucessfully Uploaded !!");
+                  document.getElementById('uploadPostForm').style.display='none';
+                  document.getElementById('overlapContentPage').style.display='none';
+                  document.getElementById('axisMenu').style.display='block';
+                  document.body.style.overflow = "scroll";
+            }
+            else if(response.Error_message){
+                $.each(response.errors, function(name, error){
+                    error = '<small class="text-muted error">' + error + '</small>'
+                    $form.find('[name=' + name + ']').after(error);
+                })
+            }
+            else{
+                alert("Error : "+response.error);
+            }
+        },
+        error: function(data) {
+                alert("Something Went Wrong. Try Again !!")
+              }
+      });
+    });
+
+  });
+</script>
