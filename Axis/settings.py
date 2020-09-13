@@ -88,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'axisDatabase',
         'USER': 'postgres',
-        'PASSWORD': 'leonardo',
+        'PASSWORD': 'gautam',
         'HOST': 'localhost',
         'PORT': '',
     }
