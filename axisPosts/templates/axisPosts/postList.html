@@ -17,11 +17,25 @@
                     <span class="postTag awareness">Awareness</span>
                 {% endif %}
             </div> <hr style="margin:5px;margin-top:3px;">
-            <div class="image">
+            <div class="postImageDiv">
             {% if post.postImage %}
-                <img src="{{post.postImage.url}}" alt="image of me" height="200" weidth="100">
+                <img src="{{post.postImage.url}}" alt="Post Image" id="postImage-{{post.id}}" height="100%" width="100%" style="max-height:20em;object-fit:cover;">
             {% endif %}
             </div>
+            <script>
+                function checkOverflow(element)
+                {
+                    el = document.getElementById(element);
+                    var curOverflow = el.style.overflow;
+                    if ( !curOverflow || curOverflow === "visible" )
+                        el.style.overflow = "hidden";
+                    var isOverflowing = el.clientWidth < el.scrollWidth 
+                        || el.clientHeight < el.scrollHeight;
+                    el.style.overflow = curOverflow;
+                    return isOverflowing;
+                }
+                console.log(checkOverflow("postImage-{{post.id}}"));
+            </script>
             <div class="postFeedText">&raquo; {{ post.content }} &laquo;</div>
             <div class="postFeedPopu">
                 &#9889;

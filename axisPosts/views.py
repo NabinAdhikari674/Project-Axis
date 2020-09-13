@@ -139,3 +139,32 @@ def postNewComment(request):
                 return JsonResponse({'Comment':"Comment Upload Error"})
         else :
             return JsonResponse({'Comment':"Empty Comment Error"})
+
+@login_required
+def userPosts(request):
+    model = Post.objects.filter(postAuthor=request.user)
+    postPG = Paginator(model, 10)
+    firstPage = postPG.get_page(1)
+    #pageRange = postPG.page_range
+    postIds = [x.id for x in firstPage]
+    if request.user.is_authenticated:
+        postRcs = postReactions.objects.filter(postId__in=postIds,userName=request.user)[:10]
+    else :
+        postRcs =[]
+    app = 'axisPosts'
+    context = {'post_list': firstPage,'reaction_list':postRcs,'page_n':1,'app_name':app}
+
+    if request.method == 'POST':
+        page_n = int(request.POST.get('page_n', None))
+        page_n += 1
+        results = postPG.get_page(page_n)
+        postIds = [x.id for x in results]
+        if request.user.is_authenticated:
+            postRcs = postReactions.objects.filter(postId__in=postIds,userName=request.user)[:10]
+        else :
+            postRcs =[]
+        context = {'post_list': results,'reaction_list':postRcs,'page_n':page_n}
+        return render(request, 'axisPosts/postList.html',context) 
+
+    return render(request,'axisPosts/userPosts.html',context) 
+    #return render(request, 'axisPosts/userPosts.html',{'context':"context"})

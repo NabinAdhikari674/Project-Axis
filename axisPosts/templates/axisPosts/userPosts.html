@@ -1,0 +1,16 @@
+{% extends "axisCore/base.html" %}
+{% block stylesheet %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'axisPosts/css/postFeed.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'axisPosts/css/userPosts.css' %}">
+    <script type="text/javascript" src="{% static 'axisPosts/js/userPosts.js'%}"></script>
+{% endblock %}
+{% block javascript %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="postFeed" id="postFeed">
+        {% include "axisPosts/postList.html" %}
+    </div>  
+{% endblock %}
