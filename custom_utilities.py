@@ -12,7 +12,10 @@ def deleteMigrations(folder_path,dir_space=0):
             for i,path in enumerate(next_path):
                 next_path[i] = os.path.join(folder_path,path)
             for i,further_path in enumerate(next_path):
-                deleteMigrations(further_path,(dir_space+1))
+                if os.path.basename(further_path) in ['.heroku','python']:
+                    pass
+                else:
+                    deleteMigrations(further_path,(dir_space+1))
 
 def makeMigrations():
     s = os.popen('python manage.py makemigrations axisUsers')
